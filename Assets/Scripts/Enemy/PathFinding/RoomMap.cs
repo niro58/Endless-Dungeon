@@ -55,14 +55,14 @@ public class RoomMap : MonoBehaviour
                     {
                         map.fillCell(cell);
                     }
-                    /*
+                    
                     // Not Important
                     // Only for testing (Checkers) (46 -> 59)
                     GameObject checker = Instantiate(checkerPrefab,GameObject.Find("Not Important").transform.GetChild(0));
                     roomCheckers.Add(checker);
                     //Debug.Log("Pos 1 :" + x + " , " + y);
                     checker.name = ("Checker : " + cell);
-                    checker.transform.position = map.CellToWorld(cell) + new Vector3(0, 0, -0.5f);
+                    checker.transform.position = map.CellToWorld(cell);
                     
                     if (hit == false)
                     {
@@ -71,7 +71,7 @@ public class RoomMap : MonoBehaviour
                     else
                     {
                         checker.GetComponent<SpriteRenderer>().color = Color.red;
-                    }*/
+                    }
                     
                 }
             }

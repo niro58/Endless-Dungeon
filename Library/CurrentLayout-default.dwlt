@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 781, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 1
-  controlID: 142
+  controlID: 4878
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 781, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 143
+  controlID: 4879
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 505, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
-  controlID: 144
+  controlID: 4880
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_MinSize: {x: 505, y: 221}
   m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 145
+  controlID: 4881
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 44
+  controlID: 4844
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -357,7 +357,7 @@ MonoBehaviour:
   - {fileID: 24}
   - {fileID: 25}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 3
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -404,7 +404,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 927
+    x: -993
     y: 73
     width: 446
     height: 582
@@ -493,7 +493,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 73
     width: 200
     height: 582
@@ -501,9 +501,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 42fbffff
+      m_SelectedIDs: 044a0000
+      m_LastClickedID: 18948
+      m_ExpandedIDs: a8faffff00fbffff42fbffffe6490000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -547,7 +547,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 201
+    x: -1719
     y: 73
     width: 724
     height: 582
@@ -563,9 +563,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.1191216, y: 0.4498688, z: -0.7886799}
+    m_Target: {x: -0.0017406866, y: -0.03403577, z: -1.9135399}
     speed: 2
-    m_Value: {x: 1.1191216, y: 0.4498688, z: -0.7886799}
+    m_Value: {x: -0.0017406866, y: -0.03403577, z: -1.9135399}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
-      m_Size: {x: 0.005, y: 0.005}
+      m_Size: {x: 0.1, y: 0.1}
     m_ShowGrid: 1
     m_GridAxis: 1
     m_gridOpacity: 0.5
@@ -616,9 +616,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.0380695
+    m_Target: 1.6217798
     speed: 2
-    m_Value: 2.0380695
+    m_Value: 1.6217798
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -783,7 +783,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 676
     width: 493
     height: 323
@@ -801,22 +801,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Enemy/PathFinding
+    - Assets/Scripts/Multiuse Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 58
   m_LastFolders:
-  - Assets/Scripts/Enemy/PathFinding
+  - Assets/Scripts/Multiuse Scripts
   m_LastFoldersGridSize: 58
-  m_LastProjectPath: C:\Users\nichi\Endless Dungeon
+  m_LastProjectPath: D:\Endless Dungeon\Endless-Dungeon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 209}
-    m_SelectedIDs: 56510000
-    m_LastClickedID: 20822
-    m_ExpandedIDs: 00000000c0500000c2500000c4500000f4500000fa5000001c51000000ca9a3b
+    scrollPos: {x: 0, y: 21}
+    m_SelectedIDs: fe500000
+    m_LastClickedID: 20734
+    m_ExpandedIDs: 00000000c0500000c2500000c450000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -844,7 +844,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c0500000c2500000c4500000
+    m_ExpandedIDs: 00000000c0500000c2500000c450000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000f840000090430000c843000004430000006c0000b8440000584c0000744c00007c4a0000804e0000404d0000ee5e00008a4c00008e4c0000ae4b0000da4b0000ea4c0000fe4b0000fc4b0000844b0000ce4b0000ae490000c04a0000784a0000a04b00000e4a0000604d0000be500000124e00000e4e000024540000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -123210
+  m_LastSelectedObjectID: 18918
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -948,7 +948,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 494
+    x: -1426
     y: 676
     width: 879
     height: 323
@@ -982,9 +982,9 @@ MonoBehaviour:
   m_MipLevel: 0
   m_Zoom: 4.854375
   m_ScrollPosition: {x: 0, y: 0}
-  m_SelectedAssetPath: Assets/Sprites/Rooms/Room_Design_01.png
+  m_SelectedAssetPath: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 5e97eb03825dee720800000000000000
+  m_SelectedSpriteRectGUID: 2d009a6b596c7d760800000000000000
   m_LastUsedModuleTypeName: 
 --- !u!114 &25
 MonoBehaviour:
@@ -1035,7 +1035,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1375
+    x: -545
     y: 73
     width: 544
     height: 926
