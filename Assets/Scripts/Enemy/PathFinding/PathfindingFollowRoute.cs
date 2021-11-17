@@ -25,10 +25,16 @@ public class PathfindingFollowRoute : MonoBehaviour
             pathfindingGrid = pathfindingScript.map;
         }
         route = pathfindingScript.route;
-
-        if(route.Count != 0)
+        if(route.Count > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, route[0], speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, route[route.Count - 1]) < 0.01f)
+            {
+                route.RemoveAt(route.Count - 1);
+            }
+            if(route.Count != 0)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, route[route.Count - 1], speed * Time.deltaTime);
+            }
         }
     }
 }

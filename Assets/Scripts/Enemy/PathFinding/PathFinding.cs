@@ -24,7 +24,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     {
         if(target == null)
         {
-            target = GlobalVar.player;
+            target = GlobalVar.Player;
         }
     }
     void Update()
@@ -41,7 +41,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
                 lastTargetNode = targetNode;
 
                 route = pathfind(map.WorldToCell(gameObject.transform.position), lastTargetNode);
-                
+                Debug.Log(route.Count);
                 /*
                 foreach (Vector3 node in route)
                 {
@@ -49,7 +49,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
                     routeDraw.GetComponent<SpriteRenderer>().color = Color.black;
                     routeDraw.name = node.x + " : " + node.y;
                     routeDraw.transform.position = node;
-                    Debug.Log(routeDraw.transform.position);
+                    //Debug.Log(routeDraw.transform.position);
                     routeDraw.transform.parent = GameObject.Find("Not Important").transform.GetChild(1);
                 }*/
             }

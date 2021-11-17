@@ -29,10 +29,8 @@ public class RoomGenerationCall : MonoBehaviour
         int layerMask = 1 >> 10;
         layerMask = ~layerMask;
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, inversedDir, 0.5f, layerMask);
-        Debug.DrawLine(transform.position, transform.position + (new Vector3(inversedDir.x, inversedDir.y, 0) * (0.5f)), Color.red, 5f);
         if (rayHit)
         {
-            Debug.Log(rayHit.transform.parent.parent.parent.transform.name);
             GlobalVar.currentRoom = rayHit.transform.parent.parent.parent.gameObject;
         }
     }

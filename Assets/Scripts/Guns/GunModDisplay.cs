@@ -10,7 +10,7 @@ public class GunModDisplay : MonoBehaviour
     private Vector3 startPos;
 
     [HideInInspector]
-    public float Damage;
+    public int Damage;
     [HideInInspector]
     public float FireRateReduction;// Something like FireRate Cooldown Reduction/Increase
     [HideInInspector]

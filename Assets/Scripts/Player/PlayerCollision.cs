@@ -24,9 +24,9 @@ public class PlayerCollision : MonoBehaviour
         {
             anim.Play("Player-Hit");
             EntityStats entityStats = col.gameObject.GetComponent<EntityStats>();
-            GlobalVar.Health -= entityStats.onCollisionDamage;
+            GlobalVar.sumStats.Health -= entityStats.onCollisionDamage;
         }
-        if (GlobalVar.Health == 0)
+        if (GlobalVar.sumStats.Health == 0)
         {
             Destroy(gameObject);
         }

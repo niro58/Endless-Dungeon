@@ -8,10 +8,13 @@ public class Bullet : MonoBehaviour
     public Gun.bulletType BulletType;
     [HideInInspector]
     public float Speed;
+    [HideInInspector]
+    public int Damage;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Damage = GlobalVar.sumStats.Damage;
+        Speed = GlobalVar.sumStats.BulletSpeed;
     }
     void Update()
     {
@@ -22,8 +25,11 @@ public class Bullet : MonoBehaviour
                 break;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(gameObject);
+        if (col.gameObject.layer != 8 || col.gameObject.layer != 8)
+        {
+            Destroy(gameObject);
+        }
     }
 }

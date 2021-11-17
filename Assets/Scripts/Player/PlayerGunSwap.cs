@@ -6,7 +6,7 @@ public class PlayerGunSwap : MonoBehaviour
 {
     private void Start()
     {
-        GunFunctions.swapPlayerGun(gameObject, 0);
+        swapPlayerGun(0);
     }
     private void Update()
     {
@@ -16,9 +16,14 @@ public class PlayerGunSwap : MonoBehaviour
             {
                 if (Input.GetKeyDown(i.ToString()))
                 {
-                    GunFunctions.swapPlayerGun(gameObject, i - 1); // decrease by 1 because getchild starts from 0
+                    swapPlayerGun(i - 1); // decrease by 1 because getchild starts from 0
                 }
             }
         }
+    }
+    private void swapPlayerGun(int slot)
+    {
+        
+        GlobalVar.currentPlayerGunSlot = slot;
     }
 }

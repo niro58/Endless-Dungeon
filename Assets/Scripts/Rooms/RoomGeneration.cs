@@ -19,14 +19,16 @@ public class RoomGeneration : MonoBehaviour
         grid = new CustomGrid(cellSize);
         grid.fillCell(new Vector2Int(0,0));
         roomsParent = GameObject.Find("Rooms");
-
     }
     public bool generateNextRoom(Vector2Int roomDirection, GameObject door)
     {
         GameObject currentRoom = door.transform.parent.parent.gameObject; // Getting the current player room, based on collision(door)
         Vector2Int roomCell = grid.WorldToCell(currentRoom.transform.position); // Getting the cell of the current room cell
+        Debug.Log("Roomcell : " + roomCell);
+        Debug.Log("direction : " + roomDirection);
         if (grid.isAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
+            Debug.Log("noway");
             return false;
         }
         else
@@ -37,7 +39,7 @@ public class RoomGeneration : MonoBehaviour
             {
                 int randNum = Random.Range(0, listOfRooms.Count);
                 GameObject randRoom = Instantiate(listOfRooms[randNum], Vector3.zero, Quaternion.identity, roomsParent.transform); // Selecting a random room based on randNum, and then deleting the room from array
-                randRoom.transform.localPosition = Vector3.zero;
+                randRoom.transform.position = currentRoom.transform.position;
                 listOfRooms.RemoveAt(randNum);
                 List<GameObject> cells = new List<GameObject>();
                 foreach (Transform cell in randRoom.transform)// Getting each room cell
@@ -50,7 +52,7 @@ public class RoomGeneration : MonoBehaviour
                     bool endLoop = true;
                     foreach (GameObject cell in cells)
                     {
-                        cell.transform.position += Vector3.Scale(new Vector3Int(roomDirection.x, roomDirection.y, 0), new Vector3(cellSize.x, cellSize.y, 0));
+                        cell.transform.localPosition += Vector3.Scale(new Vector3Int(roomDirection.x, roomDirection.y, 0), new Vector3(1, 1, 0));
                         if (grid.WorldToCell(cell.transform.position) == roomCell)
                         {
                             endLoop = false;

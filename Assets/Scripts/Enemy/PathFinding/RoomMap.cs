@@ -55,7 +55,7 @@ public class RoomMap : MonoBehaviour
                     {
                         map.fillCell(cell);
                     }
-                    
+                    /*
                     // Not Important
                     // Only for testing (Checkers) (46 -> 59)
                     GameObject checker = Instantiate(checkerPrefab,GameObject.Find("Not Important").transform.GetChild(0));
@@ -72,6 +72,7 @@ public class RoomMap : MonoBehaviour
                     {
                         checker.GetComponent<SpriteRenderer>().color = Color.red;
                     }
+                    */
                     
                 }
             }

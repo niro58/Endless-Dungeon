@@ -75,7 +75,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Scripts\Enemy\PathFinding\RoomMap.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
-    <Compile Include="Assets\Scripts\Guns\GunFunctions.cs" />
+    <Compile Include="Assets\Scripts\Guns\SumStats.cs" />
     <Compile Include="Assets\Scripts\Guns\GunModDisplay.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\Scripts\Rooms\DoorStats.cs" />
@@ -99,9 +99,9 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Guns\Gun.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy04Script.cs" />
+    <Compile Include="Assets\GunStats.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\Scripts\Multiuse Scripts\GlobalVar.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
