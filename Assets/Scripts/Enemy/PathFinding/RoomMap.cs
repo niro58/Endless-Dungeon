@@ -9,7 +9,7 @@ public class RoomMap : MonoBehaviour
 
     public GameObject checkerPrefab;
     private List<GameObject> roomCheckers = new List<GameObject>();
-    public Vector2 mapSize;
+    public Vector2 mapCellSize;
     private void Start()
     {
         currentRoom = GlobalVar.currentRoom;
@@ -26,7 +26,7 @@ public class RoomMap : MonoBehaviour
     }
     CustomGrid drawMap(GameObject room) // Creates room map every time when the currentRoom changes.
     {
-        CustomGrid map = new CustomGrid(mapSize);
+        CustomGrid map = new CustomGrid(mapCellSize);
         if (roomCheckers.Count > 1)
         {
             foreach (GameObject checker in roomCheckers)
@@ -37,19 +37,19 @@ public class RoomMap : MonoBehaviour
         }
         foreach (Transform roomPart in room.transform)
         {
-            Vector3 roomPos = roomPart.position;
-            Vector2 roomScale = roomPart.root.localScale;
 
-            for (float x = -roomScale.x / 2; x <= roomScale.x / 2; x += mapSize.x)
+            Vector2Int roomCell = map.WorldToCell(roomPart.transform.position);
+            int size = Mathf.RoundToInt(3 / mapCellSize.x);
+            for (int x = -size / 2; x < size / 2; x++)
             {
-                for (float y = -roomScale.y / 2; y <= roomScale.y / 2; y += mapSize.y)
+                for (int y = -size / 2; y < size / 2; y++)
                 {
-                    Vector3 pos = roomPos - new Vector3(x, y, 0);
-                    Vector2Int cell = map.WorldToCell(pos);
+                    Vector2Int cell = roomCell + new Vector2Int(x, y);
+                    Vector3 pos = map.CellToWorld(cell);
                     string[] maskLayers = new string[] { "Player", "Enemy" };
                     LayerMask layerMask = LayerMask.GetMask(maskLayers);
                     layerMask = ~layerMask;
-                    RaycastHit2D hit = Physics2D.BoxCast(map.CellToWorld(cell), mapSize, 0, new Vector2(0, 0), Mathf.Infinity, layerMask);
+                    RaycastHit2D hit = Physics2D.BoxCast(pos, mapCellSize, 0, new Vector2(0, 0), Mathf.Infinity, layerMask);
 
                     if (hit == false)
                     {
@@ -58,12 +58,12 @@ public class RoomMap : MonoBehaviour
                     /*
                     // Not Important
                     // Only for testing (Checkers) (46 -> 59)
-                    GameObject checker = Instantiate(checkerPrefab,GameObject.Find("Not Important").transform.GetChild(0));
+                    checkerPrefab.transform.localPosition = mapSize;
+                    GameObject checker = Instantiate(checkerPrefab,pos,Quaternion.identity, GameObject.Find("Not Important").transform.GetChild(0));
+                    checker.transform.localScale = mapSize;
                     roomCheckers.Add(checker);
                     //Debug.Log("Pos 1 :" + x + " , " + y);
                     checker.name = ("Checker : " + cell);
-                    checker.transform.position = map.CellToWorld(cell);
-                    
                     if (hit == false)
                     {
                         checker.GetComponent<SpriteRenderer>().color = Color.green;
@@ -71,11 +71,11 @@ public class RoomMap : MonoBehaviour
                     else
                     {
                         checker.GetComponent<SpriteRenderer>().color = Color.red;
-                    }
-                    */
-                    
+                    }*/
                 }
             }
+            
+
         }
         return map;
     }

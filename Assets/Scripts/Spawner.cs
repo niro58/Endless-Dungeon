@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField]
     private GameObject[] availableEnemies;
     public bool onlyFlyingEnemies;
     void Start()
     {
-        availableEnemies = GlobalVar.availableEnemies;
         StartCoroutine(spawnEnemies());
     }
     IEnumerator spawnEnemies()
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
                 break;
             }
         }
-        
+        Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()

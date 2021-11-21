@@ -47,4 +47,8 @@ public class CustomGrid
         }
         return nodes;
     }
+    public List<Vector2Int> getFilledCells()
+    {
+        return filledCells;
+    }
 }

@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1880242cd89138f4cb5cc6fb1ad74004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.4
-  checkerPrefab: {fileID: 0}
+  cooldown: 1
+  checkerPrefab: {fileID: 3330212231227041054, guid: ce336671a05171d40ba7b73b839a5e6a, type: 3}
   target: {fileID: 0}
   route: []
 --- !u!114 &6392970109641071678

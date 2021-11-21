@@ -9,6 +9,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
 {
     public float cooldown;
     private float cooldownTime;
+    private float cooldownst;
     public GameObject checkerPrefab;// can be deleted
 
     public GameObject target;
@@ -32,16 +33,16 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
         currentRoom = GlobalVar.currentRoom;
         map = GlobalVar.Map;
         cooldownTime += Time.deltaTime;
-        if(currentRoom != null && cooldownTime > cooldown)
+        if(currentRoom != null && cooldownTime > cooldownst)
         {
+            cooldownst = UnityEngine.Random.Range(0.1f, cooldown);
             cooldownTime = 0;
             targetNode = map.WorldToCell(target.transform.position);
             if (currentRoom == GlobalVar.currentRoom && (targetNode != lastTargetNode || route.Count() == 0) && map.isAvailable(targetNode))
             {// If global variable currentRoom is not the same as currentRoom && ( targetNode is not the same as lastTargetNode || route list is empty) && if target node is available
                 lastTargetNode = targetNode;
-
-                route = pathfind(map.WorldToCell(gameObject.transform.position), lastTargetNode);
-                Debug.Log(route.Count);
+                route = getPath(map.WorldToCell(gameObject.transform.position), lastTargetNode);
+                
                 /*
                 foreach (Vector3 node in route)
                 {
@@ -59,7 +60,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
             route.Clear();
         }
     }
-    List<Vector3> pathfind(Vector2Int startNode,Vector2Int targetNode)
+    List<Vector3> getPath(Vector2Int startNode,Vector2Int targetNode)
     {
         Vector2Int start = startNode;
         Vector2Int target = targetNode;
@@ -103,11 +104,11 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
                     {
                         if (!openNodes.Any(pathNodeInfo => pathNodeInfo.Node == nodeInfo.Node))
                         {
-                            /*
+                            
                             GameObject routeDraw = Instantiate(checkerPrefab);
                             routeDraw.GetComponent<SpriteRenderer>().color = Color.blue;
                             routeDraw.transform.position = map.CellToWorld(nodeInfo.Node);
-                            routeDraw.transform.parent = GameObject.Find("Route").transform;*/
+                            routeDraw.transform.parent = GameObject.Find("Route").transform;
 
                             openNodes.Add(nodeInfo);
                         }

@@ -8,8 +8,11 @@ public class RoomGeneration : MonoBehaviour
     private List<GameObject> rooms;
     private CustomGrid grid;
     private Vector2Int cellSize = new Vector2Int(3, 3);
-
+ 
     private GameObject roomsParent;
+
+    [SerializeField]
+    private List<Vector2Int> filledCells = new List<Vector2Int>();
     public void Awake()
     {
         GlobalVar.currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
@@ -20,15 +23,17 @@ public class RoomGeneration : MonoBehaviour
         grid.fillCell(new Vector2Int(0,0));
         roomsParent = GameObject.Find("Rooms");
     }
+    public void Update()
+    {
+        filledCells = grid.getFilledCells();
+    }
     public bool generateNextRoom(Vector2Int roomDirection, GameObject door)
     {
         GameObject currentRoom = door.transform.parent.parent.gameObject; // Getting the current player room, based on collision(door)
         Vector2Int roomCell = grid.WorldToCell(currentRoom.transform.position); // Getting the cell of the current room cell
-        Debug.Log("Roomcell : " + roomCell);
-        Debug.Log("direction : " + roomDirection);
         if (grid.isAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
-            Debug.Log("noway");
+            Debug.Log("1");
             return false;
         }
         else
@@ -44,7 +49,10 @@ public class RoomGeneration : MonoBehaviour
                 List<GameObject> cells = new List<GameObject>();
                 foreach (Transform cell in randRoom.transform)// Getting each room cell
                 {
-                    cells.Add(cell.gameObject);
+                    if (cell.name.Contains("Room_Design"))
+                    {
+                        cells.Add(cell.gameObject);
+                    }
                 }
 
                 for (int i = 0; i < cells.Count; i++)// Moving cells into the direction that was defined at the door until they won't collide with the current room
@@ -88,7 +96,6 @@ public class RoomGeneration : MonoBehaviour
                         Destroy(roomsParent.transform.GetChild(0).gameObject);// destroy the room
                     }
                 }
-                break;
             }
             return true;
         }
