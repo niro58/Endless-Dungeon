@@ -58,9 +58,9 @@ public class RoomMap : MonoBehaviour
                     /*
                     // Not Important
                     // Only for testing (Checkers) (46 -> 59)
-                    checkerPrefab.transform.localPosition = mapSize;
+                    checkerPrefab.transform.localPosition = mapCellSize;
                     GameObject checker = Instantiate(checkerPrefab,pos,Quaternion.identity, GameObject.Find("Not Important").transform.GetChild(0));
-                    checker.transform.localScale = mapSize;
+                    checker.transform.localScale = mapCellSize;
                     roomCheckers.Add(checker);
                     //Debug.Log("Pos 1 :" + x + " , " + y);
                     checker.name = ("Checker : " + cell);

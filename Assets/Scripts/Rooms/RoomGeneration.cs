@@ -11,26 +11,21 @@ public class RoomGeneration : MonoBehaviour
  
     private GameObject roomsParent;
 
-    [SerializeField]
-    private List<Vector2Int> filledCells = new List<Vector2Int>();
     public void Awake()
     {
         GlobalVar.currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
     }
     public void Start()
     {
+        cellSize = Vector2Int.FloorToInt(GlobalVar.currentRoom.transform.root.localScale);
+
         grid = new CustomGrid(cellSize);
         grid.fillCell(new Vector2Int(0,0));
         roomsParent = GameObject.Find("Rooms");
     }
-    public void Update()
+    public bool generateNextRoom(Vector2Int roomDirection, Vector3 roomCellPos)
     {
-        filledCells = grid.getFilledCells();
-    }
-    public bool generateNextRoom(Vector2Int roomDirection, GameObject door)
-    {
-        GameObject currentRoom = door.transform.parent.parent.gameObject; // Getting the current player room, based on collision(door)
-        Vector2Int roomCell = grid.WorldToCell(currentRoom.transform.position); // Getting the cell of the current room cell
+        Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
         if (grid.isAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
             Debug.Log("1");
@@ -44,15 +39,14 @@ public class RoomGeneration : MonoBehaviour
             {
                 int randNum = Random.Range(0, listOfRooms.Count);
                 GameObject randRoom = Instantiate(listOfRooms[randNum], Vector3.zero, Quaternion.identity, roomsParent.transform); // Selecting a random room based on randNum, and then deleting the room from array
-                randRoom.transform.position = currentRoom.transform.position;
+                Vector3 roomPos = grid.CellToWorld(roomCell);
+                roomPos.z = 1;
+                randRoom.transform.position = roomPos;
                 listOfRooms.RemoveAt(randNum);
                 List<GameObject> cells = new List<GameObject>();
-                foreach (Transform cell in randRoom.transform)// Getting each room cell
+                foreach (Transform cell in randRoom.transform.Find("Room_Parts"))// Getting each room cell
                 {
-                    if (cell.name.Contains("Room_Design"))
-                    {
-                        cells.Add(cell.gameObject);
-                    }
+                    cells.Add(cell.gameObject);
                 }
 
                 for (int i = 0; i < cells.Count; i++)// Moving cells into the direction that was defined at the door until they won't collide with the current room

@@ -15,5 +15,7 @@ public static class GlobalVar
 
     // Spawner
     public static bool RoomCleared;
-    public static int currentLevel;
+    public static int CurrentLevel;
+    public static List<Enemy> availableSpawnEnemies;
+
 }

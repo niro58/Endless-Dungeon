@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1570997318731357360
 Transform:
   m_ObjectHideFlags: 0
@@ -95,6 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dd110e4cccbc14c85299e3ecb73ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableEnemies:
-  - {fileID: 7229647922429479379, guid: 4b8d707f7e3573445a5a40da94d38f9e, type: 3}
   onlyFlyingEnemies: 0

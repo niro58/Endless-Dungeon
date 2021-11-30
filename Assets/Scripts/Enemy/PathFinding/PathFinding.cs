@@ -66,7 +66,8 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
         Vector2Int target = targetNode;
         List<nodeInfo> openNodes = new List<nodeInfo>();
         List<nodeInfo> closedNodes = new List<nodeInfo>();
-        openNodes.Add(new nodeInfo(start, (int)Vector2.Distance(target, start), start));
+        nodeInfo workNode = new nodeInfo(start, (int)Vector2.Distance(target, start), start);
+        openNodes.Add(workNode);
 
         for (int i = 0; i < GameObject.Find("Route").transform.childCount; i++)
         {
@@ -94,22 +95,22 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
             }
             foreach (Vector2Int node in map.getNodesAroundNode(bestOpenNode.Node))
             {
-                nodeInfo nodeInfo = new nodeInfo(new Vector2Int(node.x,node.y), priceCalculation(node, start, target), bestOpenNode.Node);
+                nodeInfo nodeInfo = new nodeInfo(new Vector2Int(node.x,node.y), priceCalculation(node, start, target, bestOpenNode.Node), bestOpenNode.Node);
                 Vector2Int nodeInt = new Vector2Int(node.x,node.y);
                 if (!map.isAvailable(nodeInt) || closedNodes.Any(pathNodeInfo => pathNodeInfo.Node == nodeInfo.Node))
                 {
                 }else 
                 {
-                    if (openNodes.Contains(nodeInfo) == false || nodeInfo.f_cost < priceCalculation(nodeInfo.Node, start, target))
+                    if (openNodes.Contains(nodeInfo) == false || nodeInfo.f_cost < priceCalculation(nodeInfo.Node, start, target, bestOpenNode.Node))
                     {
                         if (!openNodes.Any(pathNodeInfo => pathNodeInfo.Node == nodeInfo.Node))
                         {
-                            
+                            /*
                             GameObject routeDraw = Instantiate(checkerPrefab);
                             routeDraw.GetComponent<SpriteRenderer>().color = Color.blue;
                             routeDraw.transform.position = map.CellToWorld(nodeInfo.Node);
                             routeDraw.transform.parent = GameObject.Find("Route").transform;
-
+                            */
                             openNodes.Add(nodeInfo);
                         }
                     }
@@ -154,18 +155,18 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     private class nodeInfo
     {
         public Vector2Int Node;
-        public int f_cost;
+        public float f_cost;
         public Vector2Int parent;
-        public nodeInfo(Vector2Int Node, int f_cost, Vector2Int parent)
+        public nodeInfo(Vector2Int Node, float f_cost, Vector2Int parent)
         {
             this.Node = Node;
             this.f_cost = f_cost;
             this.parent = parent;
         }
     }
-    private int priceCalculation(Vector2Int node, Vector2Int start, Vector2Int target)
+    private float priceCalculation(Vector2Int node, Vector2Int start, Vector2Int target, Vector2Int parent)
     {
-        return (int)Vector2.Distance(target, node) + (int)Vector2.Distance(start, node);
+        return Vector2.Distance(target, node) + Vector2.Distance(start, node) + Vector2.Distance(node,parent);
     }
 
 }

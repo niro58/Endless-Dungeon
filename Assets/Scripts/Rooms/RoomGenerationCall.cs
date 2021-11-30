@@ -16,7 +16,7 @@ public class RoomGenerationCall : MonoBehaviour
 
     IEnumerator moveToNextRoom(Vector2Int dir, Collision2D hit)
     {
-        if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().generateNextRoom(dir, hit.collider.gameObject))
+        if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().generateNextRoom(dir, hit.transform.parent.parent.position))
         {
             yield return new WaitForSeconds(0.3f);
         }

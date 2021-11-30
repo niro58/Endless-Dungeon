@@ -19,6 +19,11 @@ public class EntityStats : MonoBehaviour
     [Header("Collision Stats")]
     public int onCollisionDamage = 1;
     public int onCollisionKnockback = 1;
+
+    [Header("Spawn")]
+    public int maxAmountPerRoom;
+    public int spawnAmount;
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.layer == 12)// If layer == Bullet
@@ -30,5 +35,16 @@ public class EntityStats : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+    public void OnValidate()
+    {
+        if(maxAmountPerRoom < 1)
+        {
+            maxAmountPerRoom = 1;
+        }
+        if(spawnAmount < 1)
+        {
+            spawnAmount = 1;
+        }
     }
 }

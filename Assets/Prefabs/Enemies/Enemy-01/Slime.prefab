@@ -107,6 +107,8 @@ MonoBehaviour:
   BulletRange: 0
   onCollisionDamage: 1
   onCollisionKnockback: 1
+  maxAmountPerRoom: 3
+  spawnAmount: 1
 --- !u!114 &1880856434128878580
 MonoBehaviour:
   m_ObjectHideFlags: 0
