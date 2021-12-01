@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomGrid
 {
-    Vector2 cellSize;
+    public Vector2 cellSize;
     public List<Vector2Int> filledCells = new List<Vector2Int>();
     public CustomGrid(Vector2 cellSize)
     {

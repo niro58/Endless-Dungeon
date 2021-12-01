@@ -18,7 +18,9 @@ public class RoomGenerationCall : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().generateNextRoom(dir, hit.transform.parent.parent.position))
         {
+            GlobalVar.canMove = false;
             yield return new WaitForSeconds(0.3f);
+            GlobalVar.canMove = true;
         }
 
         transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, transform.position.z);
@@ -31,6 +33,7 @@ public class RoomGenerationCall : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, inversedDir, 0.5f, layerMask);
         if (rayHit)
         {
+            Debug.Log(rayHit.collider.name);
             GlobalVar.currentRoom = rayHit.transform.parent.parent.parent.gameObject;
         }
     }

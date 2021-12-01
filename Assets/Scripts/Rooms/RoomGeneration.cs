@@ -8,10 +8,10 @@ public class RoomGeneration : MonoBehaviour
     private List<GameObject> rooms;
     private CustomGrid grid;
     private Vector2Int cellSize = new Vector2Int(3, 3);
- 
+
     private GameObject roomsParent;
 
-    public void Awake()
+    public void Awake()// fix the bug with cells
     {
         GlobalVar.currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
     }
@@ -20,7 +20,7 @@ public class RoomGeneration : MonoBehaviour
         cellSize = Vector2Int.FloorToInt(GlobalVar.currentRoom.transform.root.localScale);
 
         grid = new CustomGrid(cellSize);
-        grid.fillCell(new Vector2Int(0,0));
+        grid.fillCell(new Vector2Int(0, 0));
         roomsParent = GameObject.Find("Rooms");
     }
     public bool generateNextRoom(Vector2Int roomDirection, Vector3 roomCellPos)
@@ -28,7 +28,6 @@ public class RoomGeneration : MonoBehaviour
         Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
         if (grid.isAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
-            Debug.Log("1");
             return false;
         }
         else
@@ -83,7 +82,7 @@ public class RoomGeneration : MonoBehaviour
                     }
                     if (roomsParent.transform.childCount > 16)// if Rooms parent has more than 16 childs
                     {
-                        foreach (Transform cell in roomsParent.transform.GetChild(0).transform)// Foreach the earliest created room and delete cells from grid
+                        foreach (Transform cell in roomsParent.transform.GetChild(0).GetChild(0).transform)// Foreach the earliest created room and delete cells from grid
                         {
                             grid.deleteCell(grid.WorldToCell(cell.transform.position));
                         }
@@ -94,6 +93,5 @@ public class RoomGeneration : MonoBehaviour
             return true;
         }
     }
-   
 
 }

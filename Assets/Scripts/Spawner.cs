@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 public class Spawner : MonoBehaviour
 {
+
     public bool onlyFlyingEnemies;
 
     private List<Enemy> availableEnemies;
@@ -15,8 +16,10 @@ public class Spawner : MonoBehaviour
     }
     IEnumerator spawnEnemies()
     {
-
+        GlobalVar.canMove = false;
         yield return new WaitForSeconds(2f);// foreach child -> get random item from dictionary -> get values from it  -> spawn the amount of mobs, decrease the number of max spawns -> if number <= 0 remove from dictionary
+        GlobalVar.canMove = true;
+
         foreach (Transform child in transform)
         {
             if (child.gameObject.activeInHierarchy)

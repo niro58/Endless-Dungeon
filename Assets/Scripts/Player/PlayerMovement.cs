@@ -19,17 +19,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveThrust = GlobalVar.sumStats.Speed;
-        // Movement part
-        movement = new Vector2(Input.GetAxisRaw("Horizontal") * moveThrust, Input.GetAxisRaw("Vertical") * moveThrust);
-        rb.velocity = movement; 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (GlobalVar.canMove)
         {
-            anim.SetBool("Moving", true);
+            moveThrust = GlobalVar.sumStats.Speed;
+            // Movement part
+            movement = new Vector2(Input.GetAxisRaw("Horizontal") * moveThrust, Input.GetAxisRaw("Vertical") * moveThrust);
+            rb.velocity = movement;
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                anim.SetBool("Moving", true);
+            }
+            else
+            {
+                anim.SetBool("Moving", false);
+            }
         }
         else
         {
-            anim.SetBool("Moving",false);
+            rb.velocity = Vector2.zero;
         }
     }
  

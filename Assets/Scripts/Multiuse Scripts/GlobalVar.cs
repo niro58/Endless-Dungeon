@@ -8,6 +8,7 @@ public static class GlobalVar
     public static CustomGrid Map;
 
     public static GameObject Player;
+    public static bool canMove = true;
 
     public static int currentPlayerGunSlot = 0;
     public static SumStats sumStats;
