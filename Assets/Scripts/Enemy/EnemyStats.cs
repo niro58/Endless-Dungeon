@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyStats : MonoBehaviour
+{
+
+    [Header("Entity Stats")]
+    public int EntHealth = 1;
+    public float EntSpeed = 1;
+
+    
+    [Header("Gun Stats")]
+    public float Damage = 0;
+    public float FireRate = 0;// In seconds
+    public float BulletSpeed = 0;
+    public float BulletRange = 0;
+
+    [Header("Collision Stats")]
+    public int onCollisionDamage = 1;
+    public int onCollisionKnockback = 1;
+
+    [Header("Spawn")]
+    public int maxAmountPerRoom;
+    public int spawnAmount;
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log(col.gameObject.layer);
+        if (col.gameObject.layer == 12)// If layer == Bullet
+        {
+            Destroy(col.gameObject);
+            EntHealth -= GlobalVar.playerStats.Damage;
+        }
+        if(EntHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+    public void OnValidate()
+    {
+        if(maxAmountPerRoom < 1)
+        {
+            maxAmountPerRoom = 1;
+        }
+        if(spawnAmount < 1)
+        {
+            spawnAmount = 1;
+        }
+    }
+}

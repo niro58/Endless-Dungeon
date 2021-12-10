@@ -5,29 +5,42 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [HideInInspector]
-    public Gun.bulletType BulletType;
+    public Gun.BulletType bulletType;
     [HideInInspector]
-    public float Speed;
+    public float speed;
     [HideInInspector]
-    public int Damage;
-    // Start is called before the first frame update
+    public int damage;
+    [HideInInspector]
+    public float range;
+
+    private Vector3 startPos;
     void Start()
     {
-        Damage = GlobalVar.sumStats.Damage;
-        Speed = GlobalVar.sumStats.BulletSpeed;
+        damage = GlobalVar.playerStats.Damage;
+        speed = GlobalVar.playerStats.BulletSpeed;
+        range = GlobalVar.playerStats.BulletRange;
+        startPos = transform.position;
     }
     void Update()
     {
-        switch (BulletType)// Bullet movement, it is set on bullet creation in Gun.cs
+        if(Vector2.Distance(startPos, transform.position) >= range)
         {
-            case Gun.bulletType.Straight:
-                transform.position += transform.right * (Speed / 50);
-                break;
+            Destroy(gameObject);
         }
+        else
+        {
+            switch (bulletType)// Bullet movement, it is set on bullet creation in Gun.cs
+            {
+                case Gun.BulletType.Straight:
+                    transform.position += transform.right * (speed / 50);
+                    break;
+            }
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.layer != 8 || col.gameObject.layer != 8)
+        if(col.gameObject.layer != 8 || col.gameObject.layer != 9)
         {
             Destroy(gameObject);
         }

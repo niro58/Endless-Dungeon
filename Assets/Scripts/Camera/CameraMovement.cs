@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float CameraSpeed;
+    public float cameraSpeed;
 
 
     public GameObject player;
@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
     {
         if(Vector2.Distance(player.transform.position,camStartPos) > 0.1f)// Follows the player if he is 0.1f far away from camera
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position + camStartPos, CameraSpeed);
+            transform.position = Vector3.Lerp(transform.position, player.transform.position + camStartPos, cameraSpeed);
         }
     }
 }

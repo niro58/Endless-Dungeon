@@ -19,17 +19,17 @@ public class Gun : MonoBehaviour
     private float shootCooldown;
 
     
-    public enum bulletType { Straight, ZigZag };
+    public enum BulletType { Straight, ZigZag };
     [Header("Bullet")]
     [SerializeField]
-    private bulletType BulletType;
+    private BulletType bulletType;
     [SerializeField]
     private GameObject bulletPrefab;
 
-    private SumStats sumStats;
+    private PlayerStats playerStats;
     public void Start()
     {
-        sumStats = GlobalVar.sumStats;
+        playerStats = GlobalVar.playerStats;
         firePoint = transform.Find("FirePoint").gameObject;
         
     }
@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Mouse0) && Time.time >= shootCooldown)
         {
-            shootCooldown = Time.time + sumStats.FireRate;
+            shootCooldown = Time.time + playerStats.FireRate;
 
             switch (shootingType)// Bullet creation, setting bullet script
             {

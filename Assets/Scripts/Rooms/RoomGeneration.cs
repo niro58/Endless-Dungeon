@@ -13,20 +13,20 @@ public class RoomGeneration : MonoBehaviour
 
     public void Awake()// fix the bug with cells
     {
-        GlobalVar.currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
+        GlobalVar.CurrentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
     }
     public void Start()
     {
-        cellSize = Vector2Int.FloorToInt(GlobalVar.currentRoom.transform.root.localScale);
+        cellSize = Vector2Int.FloorToInt(GlobalVar.CurrentRoom.transform.root.localScale);
 
         grid = new CustomGrid(cellSize);
-        grid.fillCell(new Vector2Int(0, 0));
+        grid.FillCell(new Vector2Int(0, 0));
         roomsParent = GameObject.Find("Rooms");
     }
     public bool generateNextRoom(Vector2Int roomDirection, Vector3 roomCellPos)
     {
         Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
-        if (grid.isAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
+        if (grid.IsAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
             return false;
         }
@@ -67,7 +67,7 @@ public class RoomGeneration : MonoBehaviour
                 bool endWhileLoop = true;
                 foreach (GameObject cell in cells)
                 {
-                    if (grid.isAvailable(grid.WorldToCell(cell.transform.position)))// If any of the randRoom cells collides with any other already created cell
+                    if (grid.IsAvailable(grid.WorldToCell(cell.transform.position)))// If any of the randRoom cells collides with any other already created cell
                     {
                         Destroy(randRoom);
                         endWhileLoop = false;
@@ -78,13 +78,13 @@ public class RoomGeneration : MonoBehaviour
                 {
                     foreach (GameObject cell in cells)// add it to the grid
                     {
-                        grid.fillCell(grid.WorldToCell(cell.transform.position));
+                        grid.FillCell(grid.WorldToCell(cell.transform.position));
                     }
                     if (roomsParent.transform.childCount > 16)// if Rooms parent has more than 16 childs
                     {
                         foreach (Transform cell in roomsParent.transform.GetChild(0).GetChild(0).transform)// Foreach the earliest created room and delete cells from grid
                         {
-                            grid.deleteCell(grid.WorldToCell(cell.transform.position));
+                            grid.DeleteCell(grid.WorldToCell(cell.transform.position));
                         }
                         Destroy(roomsParent.transform.GetChild(0).gameObject);// destroy the room
                     }

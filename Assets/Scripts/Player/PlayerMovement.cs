@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GlobalVar.canMove)
+        if (GlobalVar.CanMove)
         {
-            moveThrust = GlobalVar.sumStats.Speed;
+            moveThrust = GlobalVar.playerStats.Speed;
             // Movement part
             movement = new Vector2(Input.GetAxisRaw("Horizontal") * moveThrust, Input.GetAxisRaw("Vertical") * moveThrust);
             rb.velocity = movement;

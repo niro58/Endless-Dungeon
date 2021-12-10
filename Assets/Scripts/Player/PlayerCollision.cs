@@ -23,10 +23,10 @@ public class PlayerCollision : MonoBehaviour
         if(col.gameObject.tag == "PlayerHit")
         {
             anim.Play("Player-Hit");
-            EntityStats entityStats = col.gameObject.GetComponent<EntityStats>();
-            GlobalVar.sumStats.Health -= entityStats.onCollisionDamage;
+            EnemyStats entityStats = col.gameObject.GetComponent<EnemyStats>();
+            GlobalVar.playerStats.Health -= entityStats.onCollisionDamage;
         }
-        if (GlobalVar.sumStats.Health == 0)
+        if (GlobalVar.playerStats.Health == 0)
         {
             Destroy(gameObject);
         }

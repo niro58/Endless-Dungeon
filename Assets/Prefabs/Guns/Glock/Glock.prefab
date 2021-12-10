@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3290388500586821503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.34757, y: 0.34757, z: 0.34757}
   m_Children:
   - {fileID: 176073150383178868}
   - {fileID: 6979480929132888550}
@@ -242,9 +242,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 11400000, guid: e1a04838447c42343be9ae6947c6206d, type: 2}
-  startPos: {x: 0, y: 0, z: 0}
   damage: 0
-  firerate: 0
+  fireRateReduction: 0
+  bulletSpeed: 0
+  bulletRange: 0
 --- !u!1 &8560714602677453719
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 11400000, guid: 8e9f57424fedfe14c925b2fa0339f409, type: 2}
-  startPos: {x: 0, y: 0, z: 0}
   damage: 0
-  firerate: 0
+  fireRateReduction: 0
+  bulletSpeed: 0
+  bulletRange: 0

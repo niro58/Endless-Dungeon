@@ -8,9 +8,9 @@ public class GunMod : ScriptableObject
     public enum ModType { Muzzle, Scope, Mag};
     public ModType modType;
     [Space(10)]
-    public int Damage;
-    public float FireRateReduction;
-    public float BulletSpeed;
-    public float BulletRange;
+    public int damage;
+    public float fireRateReduction;
+    public float bulletSpeed;
+    public float bulletRange;
 }
 

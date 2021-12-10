@@ -24,6 +24,6 @@ public class PlayerGunSwap : MonoBehaviour
     private void swapPlayerGun(int slot)
     {
         
-        GlobalVar.currentPlayerGunSlot = slot;
+        GlobalVar.CurrentPlayerGunSlot = slot;
     }
 }
