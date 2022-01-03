@@ -27,5 +27,6 @@ public class RoomMap : MonoBehaviour
         CustomGrid roomMap = new CustomGrid(mapCellSize);
         roomMap.DrawRoomMap(currentRoom);
         GlobalVar.RoomMap = roomMap;
+
     }
 }

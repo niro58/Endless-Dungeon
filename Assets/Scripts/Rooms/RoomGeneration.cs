@@ -11,7 +11,7 @@ public class RoomGeneration : MonoBehaviour
 
     private GameObject roomsParent;
 
-    public void Awake()// fix the bug with cells
+    public void Awake()
     {
         GlobalVar.CurrentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
     }
@@ -28,19 +28,23 @@ public class RoomGeneration : MonoBehaviour
         Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
         if (grid.IsAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
+            GlobalVar.CurrentLevel += 1;
             return false;
         }
         else
         {
+            GlobalVar.CurrentLevel += 2;
             List<GameObject> listOfRooms = new List<GameObject>();
             listOfRooms.AddRange(rooms);
             while (listOfRooms.Count > 0)// Start of the room selection
             {
                 int randNum = Random.Range(0, listOfRooms.Count);
+
                 GameObject randRoom = Instantiate(listOfRooms[randNum], Vector3.zero, Quaternion.identity, roomsParent.transform); // Selecting a random room based on randNum, and then deleting the room from array
                 Vector3 roomPos = grid.CellToWorld(roomCell);
                 roomPos.z = 1;
                 randRoom.transform.position = roomPos;
+                
                 listOfRooms.RemoveAt(randNum);
                 List<GameObject> cells = new List<GameObject>();
                 foreach (Transform cell in randRoom.transform.Find("Room_Parts"))// Getting each room cell

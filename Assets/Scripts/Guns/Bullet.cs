@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     [HideInInspector]
     public float range;
-
+    private float destroyTime;
     private Vector3 startPos;
     void Start()
     {
@@ -23,8 +23,10 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
+        destroyTime += Time.deltaTime; 
         if(Vector2.Distance(startPos, transform.position) >= range)
         {
+            Debug.Log(destroyTime);
             Destroy(gameObject);
         }
         else

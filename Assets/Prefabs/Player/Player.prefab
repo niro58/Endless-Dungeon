@@ -46,9 +46,7 @@ GameObject:
   - component: {fileID: 5102671042076576228}
   - component: {fileID: 7742283828931289318}
   - component: {fileID: 8756538620775970054}
-  - component: {fileID: 4228415874139994678}
   - component: {fileID: 5665605826243962284}
-  - component: {fileID: 9119563141294545585}
   - component: {fileID: 5459585026276786614}
   m_Layer: 6
   m_Name: Player
@@ -91,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +118,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6433514650900030904
@@ -190,18 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bf2b98d2efc2f4eb4a0f51e1e95c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4228415874139994678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236710921077164876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7ec2295eb1be6488b7ed28cdf927e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5665605826243962284
 Rigidbody2D:
   serializedVersion: 4
@@ -223,54 +209,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &9119563141294545585
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236710921077164876}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.061621163, y: -0.14947161}
-      - {x: 0.04143359, y: -0.1487719}
-      - {x: 0.040004328, y: -0.120028734}
-      - {x: 0.059784032, y: -0.12196488}
-      - {x: 0.060277484, y: -0.07936849}
-      - {x: 0.050370693, y: -0.078666}
-      - {x: 0.04941459, y: 0.036559585}
-      - {x: 0.0295007, y: 0.06812617}
-      - {x: 0.01931487, y: 0.089834034}
-      - {x: 0.042072996, y: 0.10135382}
-      - {x: 0.041234575, y: 0.13849379}
-      - {x: 0.021006871, y: 0.15936081}
-      - {x: -0.022469155, y: 0.16}
-      - {x: -0.039562054, y: 0.1404967}
-      - {x: -0.040356673, y: 0.100750834}
-      - {x: -0.019179132, y: 0.08744802}
-      - {x: -0.04966591, y: 0.03705669}
-      - {x: -0.049288172, y: -0.079716206}
-      - {x: -0.06037972, y: -0.079083234}
-      - {x: -0.061462276, y: -0.120411545}
-      - {x: -0.039524276, y: -0.11908188}
-      - {x: -0.040823057, y: -0.16}
-      - {x: 0.060823053, y: -0.1619177}
 --- !u!95 &5459585026276786614
 Animator:
   serializedVersion: 3

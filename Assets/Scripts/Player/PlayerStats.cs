@@ -41,12 +41,23 @@ public class PlayerStats : MonoBehaviour
     {
         if(col.gameObject.layer == 8 || col.gameObject.layer == 9)
         {
-            Health -= col.gameObject.GetComponent<EnemyStats>().onCollisionDamage;
 
             Anim.Play("Player-Hit");
             EnemyStats entityStats = col.gameObject.GetComponent<EnemyStats>();
-            GlobalVar.playerStats.Health -= entityStats.onCollisionDamage;
+            Health -= (int)Mathf.Ceil(entityStats.onCollisionDamage);
+            StartCoroutine(onDamageImmunity(3, gameObject.GetComponent<PolygonCollider2D>()));
         }
+    }
+    IEnumerator onDamageImmunity(float time, Collider2D collider)
+    {
+        Physics2D.IgnoreLayerCollision(6, 8, true);
+        Physics2D.IgnoreLayerCollision(6, 9, true);
+
+        yield return new WaitForSeconds(time);
+
+        Physics2D.IgnoreLayerCollision(6, 8, false);
+        Physics2D.IgnoreLayerCollision(6, 9, false);
+
     }
     public void updatePlayerStats()
     {

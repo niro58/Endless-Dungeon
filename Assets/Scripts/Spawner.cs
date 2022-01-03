@@ -4,52 +4,48 @@ using UnityEngine;
 using System.Linq;
 public class Spawner : MonoBehaviour
 {
+    private enum EnemyType { Ground, Air, Both };
+    private EnemyType enemyType;
 
-    private bool onlyGroundEnemies;
-
-    private List<EnemyInfo> availableEnemies;
+    private List<EnemyInfo> availableEnemies = new List<EnemyInfo>();
     void Start()
     {
-        availableEnemies = GlobalVar.AvailableSpawnEnemies;
-        if (transform.name.Contains("Fly"))
-        {
-            onlyGroundEnemies = false;
-        }
-        else
-        {
-            onlyGroundEnemies = true;
-        }
         StartCoroutine(spawnEnemies());
     }
     IEnumerator spawnEnemies()
     {
-        GlobalVar.CanMove = false;
         yield return new WaitForSeconds(2f);// foreach child -> get random item from dictionary -> get values from it  -> spawn the amount of mobs, decrease the number of max spawns -> if number <= 0 remove from dictionary
-        GlobalVar.CanMove = true;
 
+
+        if (transform.name.Contains("Fly"))
+        {
+            enemyType = EnemyType.Air;
+        }
+        else
+        {
+            enemyType = EnemyType.Ground;
+        }
+        foreach (EnemyInfo enemy in GlobalVar.AvailableSpawnEnemies)
+        {
+            if (enemyType == EnemyType.Ground && enemy.gameObject.layer == 8)
+            {
+                availableEnemies.Add(enemy);
+            }
+            else if (enemyType == EnemyType.Air && enemy.gameObject.layer == 9)
+            {
+                availableEnemies.Add(enemy);
+            }
+        }
+        Transform enemyParent = GlobalVar.CurrentRoom.transform.GetChild(1);
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeInHierarchy)
-            {
-                
-                int randNum = Random.Range(0, availableEnemies.Count);// to do : spawn amount
-                EnemyInfo enemy = availableEnemies[randNum];
-                EnemyStats enemyStats = enemy.stats;
-                
-                if (onlyGroundEnemies || (!onlyGroundEnemies && enemy.gameObject.layer.ToString() == "FlyingEnemy"))
-                {
-                    GameObject enemyInst = Instantiate(enemy.gameObject, child.transform.position, Quaternion.identity, child.transform);
-                    enemyInst.transform.localScale *= 1 / child.transform.localScale.x;
-                    enemyInst.transform.localScale /= transform.root.localScale.x;
+            child.gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
+            int randNum = Random.Range(0, availableEnemies.Count);// to do : spawn amount
+            EnemyInfo enemy = availableEnemies[randNum];
+            EnemyStats enemyStats = enemy.stats;
 
-
-                    //enemy.stats.maxAmountPerRoom -= 1;
-                    //if (enemyStats.maxAmountPerRoom == 0)
-                    //{
-                    //    availableEnemies.Remove(enemy);
-                    //}
-                }
-            }
+            GameObject enemyInst = Instantiate(enemy.gameObject, child.transform.position, Quaternion.identity, enemyParent);
+            enemyInst.transform.localScale /= transform.root.localScale.x;
         }
     }
 }

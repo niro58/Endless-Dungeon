@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3690331021918114507}
   - component: {fileID: -4474816439165644520}
   - component: {fileID: 6345270458987065129}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy-04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ada38af8d963be4792da619a1f3ee62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomMap: []

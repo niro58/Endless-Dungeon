@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7603221784762165236}
   - component: {fileID: 1880856434128878580}
   - component: {fileID: 6392970109641071678}
-  - component: {fileID: 7229647922429479381}
   - component: {fileID: 7229647922429479380}
+  - component: {fileID: 2219109835489364599}
   m_Layer: 8
   m_Name: Enemy-01
   m_TagString: Untagged
@@ -99,16 +99,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b927075fb8364db7086175f139bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntHealth: 1
-  EntSpeed: 1
-  Damage: 0
-  FireRate: 0
-  BulletSpeed: 0
-  BulletRange: 0
+  animator: {fileID: 0}
+  health: 1
+  speed: 1
+  damage: 0
+  fireRate: 0
+  bulletSpeed: 0
+  bulletRange: 0
   onCollisionDamage: 1
   onCollisionKnockback: 1
-  maxAmountPerRoom: 3
-  spawnAmount: 1
+  healthMultiplier: 1
+  speedMultiplier: 0
+  damageMultiplier: 0
+  fireRateMultiplier: 0
+  bulletSpeedMultiplier: 0
+  bulletRangeMultiplier: 0
+  onCollisionDamageMultiplier: 0
+  onCollisionKnockbackMultiplier: 0
 --- !u!114 &1880856434128878580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,40 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2b9e85e237cf94995b56d05e70a10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
---- !u!60 &7229647922429479381
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7229647922429479379}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.16}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.11, y: 0.08}
-      - {x: -0.16, y: 0.01}
-      - {x: -0.16, y: -0.07}
-      - {x: -0.14999999, y: -0.08}
-      - {x: 0.14999999, y: -0.08}
-      - {x: 0.16, y: -0.07}
-      - {x: 0.16, y: 0.01}
-      - {x: 0.11, y: 0.08}
 --- !u!95 &7229647922429479380
 Animator:
   serializedVersion: 3
@@ -190,3 +163,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2219109835489364599
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7229647922429479379}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0021687679, y: -0.0027409147}
+  m_Size: {x: 0.30004892, y: 0.15451863}
+  m_Direction: 1

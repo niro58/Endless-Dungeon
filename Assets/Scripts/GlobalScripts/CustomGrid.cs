@@ -53,7 +53,7 @@ public class CustomGrid
     }
     public void DrawRoomMap(GameObject room) // Creates room map every time when the currentRoom changes.
     {
-        foreach (Transform roomPart in room.transform)
+        foreach (Transform roomPart in room.transform.Find("Room_Parts"))
         {
 
             Vector2Int roomCell = WorldToCell(roomPart.transform.position);
@@ -73,6 +73,7 @@ public class CustomGrid
                     {
                         FillCell(cell);
                     }
+                    
                 }
             }
         }

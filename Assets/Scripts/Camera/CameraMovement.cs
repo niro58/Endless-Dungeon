@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Vector2.Distance(player.transform.position,camStartPos) > 0.1f)// Follows the player if he is 0.1f far away from camera
+        if(Vector2.Distance(player.transform.position,camStartPos) > 0.15f)// Follows the player if he is 0.1f far away from camera
         {
             transform.position = Vector3.Lerp(transform.position, player.transform.position + camStartPos, cameraSpeed);
         }

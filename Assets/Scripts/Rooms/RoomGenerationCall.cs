@@ -7,7 +7,7 @@ public class RoomGenerationCall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hit)
     {
         // On collision with door it moves the player forward to next room
-        if (hit.collider.gameObject.tag == "Door")
+        if (hit.collider.gameObject.tag == "Door" && GlobalVar.RoomCleared)
         {
             Vector2Int newRoomDirection = hit.gameObject.GetComponent<Door>().doorDirectionVector;
             StartCoroutine(moveToNextRoom(newRoomDirection, hit));
@@ -33,7 +33,7 @@ public class RoomGenerationCall : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, inversedDir, 0.5f, layerMask);
         if (rayHit)
         {
-            GlobalVar.CurrentRoom = rayHit.transform.parent.parent.parent.gameObject;
+            GlobalVar.CurrentRoom = rayHit.transform.parent.parent.parent.parent.gameObject;
         }
     }
 }

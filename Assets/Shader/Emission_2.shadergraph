@@ -133,8 +133,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 566.0,
-            "y": -98.99999237060547
+            "x": 865.0,
+            "y": -162.0
         },
         "m_Blocks": [
             {
@@ -150,8 +150,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 566.0,
-            "y": 142.99998474121095
+            "x": 865.0,
+            "y": 90.00003051757813
         },
         "m_Blocks": [
             {
@@ -300,7 +300,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "20dda71c87fe4c419b05d9c19ad62e40",
     "m_Id": 0,
-    "m_DisplayName": "Texture2D",
+    "m_DisplayName": "Texture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -538,10 +538,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -308.0000305175781,
-            "y": 321.0,
+            "x": -325.9999694824219,
+            "y": 310.0,
             "width": 139.0,
-            "height": 34.0
+            "height": 33.999996185302737
         }
     },
     "m_Slots": [
@@ -788,7 +788,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"039ddf8fc2596ba42856e62d253e44b9\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
     "m_Modifiable": true,
@@ -850,16 +850,16 @@
     "m_Guid": {
         "m_GuidSerialized": "b75e0a90-e487-4326-a558-5c25a1886c22"
     },
-    "m_Name": "Texture2D",
+    "m_Name": "Texture",
     "m_DefaultReferenceName": "Texture2D_aa3a34351d6f4c23a07fd9af622c2539",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MainTex",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"039ddf8fc2596ba42856e62d253e44b9\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
     "m_Modifiable": true,
@@ -1056,10 +1056,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 142.99998474121095,
-            "y": 89.99999237060547,
+            "x": 163.9999542236328,
+            "y": 90.0,
             "width": 208.0,
-            "height": 302.0
+            "height": 301.9999694824219
         }
     },
     "m_Slots": [

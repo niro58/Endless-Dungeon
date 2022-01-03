@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 1391549723639941857}
   - component: {fileID: 2161535751303275760}
   - component: {fileID: -6019364308016908367}
+  - component: {fileID: 1429417772966567319}
   m_Layer: 0
   m_Name: M4
   m_TagString: Untagged
@@ -465,3 +466,19 @@ MonoBehaviour:
   shootingType: 0
   bulletType: 0
   bulletPrefab: {fileID: 5820650131256853968, guid: 2bc2e7cfb05088f43b339f0ff5de36c5, type: 3}
+--- !u!114 &1429417772966567319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621239589538742503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2360c47993e83da48b5227ff5b6530c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  fireRate: 4
+  bulletSpeed: 4
+  bulletRange: 4

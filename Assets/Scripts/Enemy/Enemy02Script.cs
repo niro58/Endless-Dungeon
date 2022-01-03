@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class Enemy02Script : MonoBehaviour // Enemy that goes in random directions
 {
+    private EnemyStats stats;
     [Header("Movement")]
+    private float speed;
     [SerializeField]
-    private float minMoveTime;
-    [SerializeField]
-    private float maxMoveTime;
+    private float speedRandOffset;
     private float cooldownCount = 0;
     [SerializeField]
     private float minDistance;
     [SerializeField]
     private float maxDistance;
 
-    private Rigidbody2D rb;
     private List<Vector2> availableDirections;
+    private Vector3 moveBy;
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        stats = gameObject.GetComponent<EnemyStats>();
+        speed = stats.speed;
         availableDirections = new List<Vector2>();
     }
 
     void Update()
     {
         cooldownCount -= Time.deltaTime;
-
+        transform.position += moveBy;
         if(cooldownCount <= 0)
         {
             for (int x = -1; x <= 1; x++)
@@ -37,54 +38,29 @@ public class Enemy02Script : MonoBehaviour // Enemy that goes in random directio
                     availableDirections.Add(new Vector2(x, y));
                 }
             }
-            cooldownCount = Random.Range(minMoveTime, maxMoveTime);
-            int layerMask = 1 << 8;
+            cooldownCount = Random.Range(speed - speedRandOffset, speed + speedRandOffset);
+            int layerMask = 1 << 9 | 1 << 6;
             layerMask = ~layerMask;
             for (int i = 0; i < availableDirections.Count; i++)
             {
                 float moveDistance = Random.Range(minDistance, maxDistance);
                 Vector2 direction = availableDirections[Random.Range(0, availableDirections.Count)];
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.15f, layerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.3f, layerMask);
                 Vector2 pos = transform.position;
                 if (hit == false)
                 {
                     //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.green, 5f);
+                    
                     LeanTween.move(gameObject, pos + (direction * moveDistance),cooldownCount);
                     break;
                 }
                 else
                 {
-                   // Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.red, 5f);
+                    //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.red, 5f);
                     availableDirections.Remove(direction);
                 }
             }
             availableDirections.Clear();
-        }
-    }
-    private void OnValidate()
-    {
-        if (minDistance <= 0)
-        {
-            minDistance = 0.001f;
-        }
-        else if (minDistance > maxDistance)
-        {
-            minDistance = maxDistance - 0.0001f;
-        }
-        else if (maxDistance <= 0)
-        {
-            maxDistance = 0.001f;
-        }
-        else if (minMoveTime <= 0)
-        {
-            minMoveTime = 0.001f;
-        }
-        else if (minMoveTime >= maxMoveTime) {
-            minMoveTime = maxMoveTime - 0.0001f;
-        }
-        else if (maxMoveTime <= 0)
-        {
-            maxMoveTime = 0.001f;
         }
     }
 }

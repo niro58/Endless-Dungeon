@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerGunMovement : MonoBehaviour
 {
-
+    
     private GameObject gunParent;
     private Vector3 gunScale;
+    private Vector3 startPos;
     // Start is called before the first frame update
     void Start()
     {
         gunParent = gameObject.transform.Find("Guns").gameObject;
         gunScale = gunParent.transform.localScale;
+        startPos = gunParent.transform.localPosition;
     }
     void Update()
     {
@@ -24,9 +26,9 @@ public class PlayerGunMovement : MonoBehaviour
         {
             pos.z = 0.1f;
         }
-        pos.x = (Mathf.Cos(angleRad) * .07f);
-        pos.y = (Mathf.Sin(angleRad) * .035f);
-        gunParent.transform.localPosition = pos;
+        pos.x = (Mathf.Cos(angleRad) * .15f);
+        pos.y = (Mathf.Sin(angleRad) * .075f);
+        gunParent.transform.localPosition = startPos + pos;
         gunParent.transform.rotation = angleAxis;
 
         if (gunParent.transform.eulerAngles.z > 90 && gunParent.transform.eulerAngles.z < 270)

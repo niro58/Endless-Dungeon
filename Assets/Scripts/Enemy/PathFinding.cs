@@ -27,10 +27,10 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
         {
             target = GlobalVar.Player;
         }
+        currentRoom = GlobalVar.CurrentRoom;
     }
     void Update()
     {
-        currentRoom = GlobalVar.CurrentRoom;
         map = GlobalVar.RoomMap;
         cooldownTime += Time.deltaTime;
         if(currentRoom != null && cooldownTime > cooldownTimeCooldown)

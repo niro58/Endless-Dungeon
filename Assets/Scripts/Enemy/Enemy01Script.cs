@@ -9,12 +9,16 @@ public class Enemy01Script : MonoBehaviour // enemy that follows player by pathf
     private PathFinding pathfindingScript;
     private CustomGrid pathfindingGrid;
 
-    public float speed;
+    private EnemyStats stats;
+    private Animator anim;
+    private float speed;
     // Start is called before the first frame update
     void Start()
     {
+        stats = gameObject.GetComponent<EnemyStats>();
         pathfindingScript = gameObject.GetComponent<PathFinding>();
-
+        anim = stats.animator;
+        speed = stats.speed;
     }
 
     // Update is called once per frame
@@ -33,8 +37,13 @@ public class Enemy01Script : MonoBehaviour // enemy that follows player by pathf
             }
             if(route.Count != 0)
             {
+                anim.SetBool("isMoving", true);
                 transform.position = Vector2.MoveTowards(transform.position, route[route.Count - 1], speed * Time.deltaTime);
             }
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
         }
     }
 }

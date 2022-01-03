@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,15 +8,16 @@ public static class GlobalVar
     public static CustomGrid RoomMap;
 
     public static GameObject Player;
+    public static int PlayerCoins;
     public static bool CanMove = true;
+    public static bool RoomCleared = true;
 
     public static int CurrentPlayerGunSlot = 0;
     public static PlayerStats playerStats;
     // Player Stats
 
     // Spawner
-    public static bool RoomCleared;
-    public static int CurrentLevel;
+    public static float CurrentLevel;
     public static List<EnemyInfo> AvailableSpawnEnemies;
 
 }

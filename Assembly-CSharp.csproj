@@ -89,7 +89,6 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGunSwap.cs" />
     <Compile Include="Assets\Scripts\Enemy\PathFinding.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
   </ItemGroup>

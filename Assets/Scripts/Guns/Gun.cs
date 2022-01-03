@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour
             {
                 case ShootingType.Classic:
                     Vector3 pos = firePoint.transform.position;
-                    pos.z = -0.8f;
+                    pos.z = 0.2f;
 
                     GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation, transform.Find("bullets"));
                     break;
