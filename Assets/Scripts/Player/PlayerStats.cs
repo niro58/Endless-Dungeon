@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     public int Health;
     public int Damage;
+    public float Accuracy;
     public float Speed;
     public float FireRate;
     public float FireRateReduction;
@@ -110,5 +111,6 @@ public class PlayerStats : MonoBehaviour
 
             }
         }
+
     }
 }

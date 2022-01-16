@@ -44,8 +44,10 @@ public class Gun : MonoBehaviour
                 case ShootingType.Classic:
                     Vector3 pos = firePoint.transform.position;
                     pos.z = 0.2f;
-
-                    GameObject bullet = Instantiate(bulletPrefab, pos, transform.rotation, transform.Find("bullets"));
+                    float randRange = Random.Range(-playerStats.Accuracy, playerStats.Accuracy);
+                    float rotationZ = transform.eulerAngles.z + randRange;
+                    Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
+                    GameObject bullet = Instantiate(bulletPrefab, pos, rotation, transform.Find("bullets"));
                     break;
             }
         }

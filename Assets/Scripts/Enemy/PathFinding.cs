@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
 {
     public float cooldown;
-    private float cooldownTime;
-    private float cooldownTimeCooldown;
+    private float cooldownTimeRemaining;
+    private float randCooldownTimer;
     public GameObject checkerPrefab;// can be deleted
 
     public GameObject target;
@@ -32,11 +32,11 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     void Update()
     {
         map = GlobalVar.RoomMap;
-        cooldownTime += Time.deltaTime;
-        if(currentRoom != null && cooldownTime > cooldownTimeCooldown)
+        cooldownTimeRemaining += Time.deltaTime;
+        if(currentRoom != null && cooldownTimeRemaining > randCooldownTimer)
         {
-            cooldownTimeCooldown = UnityEngine.Random.Range(0.1f, cooldown);
-            cooldownTime = 0;
+            randCooldownTimer = UnityEngine.Random.Range(0.1f, cooldown);
+            cooldownTimeRemaining = 0;
             targetNode = map.WorldToCell(target.transform.position);
             if (currentRoom == GlobalVar.CurrentRoom && (targetNode != lastTargetNode || route.Count() == 0) && map.IsAvailable(targetNode))
             {// If global variable currentRoom is not the same as currentRoom && ( targetNode is not the same as lastTargetNode || route list is empty) && if target node is available
@@ -165,7 +165,8 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     }
     private float priceCalculation(Vector2Int node, Vector2Int start, Vector2Int target, Vector2Int parent)
     {
-        return Vector2.Distance(target, node) + Vector2.Distance(start, node) + Vector2.Distance(node,parent);
+        float price = Vector2.Distance(target, node) + Vector2.Distance(start, node) + Vector2.Distance(node, parent);
+        return price;
     }
 
 }

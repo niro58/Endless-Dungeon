@@ -38,6 +38,7 @@ public class RoomGeneration : MonoBehaviour
             listOfRooms.AddRange(rooms);
             while (listOfRooms.Count > 0)// Start of the room selection
             {
+                GlobalVar.RoomCleared = false;
                 int randNum = Random.Range(0, listOfRooms.Count);
 
                 GameObject randRoom = Instantiate(listOfRooms[randNum], Vector3.zero, Quaternion.identity, roomsParent.transform); // Selecting a random room based on randNum, and then deleting the room from array

@@ -31,11 +31,11 @@ public class Enemy01Script : MonoBehaviour // enemy that follows player by pathf
         route = pathfindingScript.route;
         if(route.Count > 0)
         {
-            if (Vector2.Distance(transform.position, route[route.Count - 1]) < 0.01f)
+            if (Vector2.Distance(transform.position, route[route.Count - 1]) < 0.01f)// If distance between player and the last node is 0.01f, remove the last node
             {
                 route.RemoveAt(route.Count - 1);
             }
-            if(route.Count != 0)
+            if(route.Count != 0)// If there's still more nodes, move towards the next node
             {
                 anim.SetBool("isMoving", true);
                 transform.position = Vector2.MoveTowards(transform.position, route[route.Count - 1], speed * Time.deltaTime);

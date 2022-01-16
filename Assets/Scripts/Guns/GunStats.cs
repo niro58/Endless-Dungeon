@@ -8,4 +8,6 @@ public class GunStats : MonoBehaviour
     public float fireRate;
     public float bulletSpeed;
     public float bulletRange;
+
+    public float accuracy;
 }

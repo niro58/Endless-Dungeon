@@ -26,7 +26,6 @@ public class Bullet : MonoBehaviour
         destroyTime += Time.deltaTime; 
         if(Vector2.Distance(startPos, transform.position) >= range)
         {
-            Debug.Log(destroyTime);
             Destroy(gameObject);
         }
         else

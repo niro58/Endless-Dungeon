@@ -60,6 +60,7 @@ public class EnemyStats : MonoBehaviour
             Destroy(gameObject);
 
             int enemiesLeft = GlobalVar.CurrentRoom.transform.Find("Enemies").childCount;
+            Debug.Log(GlobalVar.RoomCleared);
             if(enemiesLeft == 0)
             {
                 GlobalVar.RoomCleared = true;
@@ -70,7 +71,8 @@ public class EnemyStats : MonoBehaviour
                     Transform doorParent = roomPart.Find("Doors");
                     foreach(Transform door in doorParent)
                     {
-                        door.Find("Door_Light").gameObject.SetActive(true);
+                        Debug.Log(door.name);
+                        door.GetChild(0).gameObject.SetActive(true);
                     }
                 }
 

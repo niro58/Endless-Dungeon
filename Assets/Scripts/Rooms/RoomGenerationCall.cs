@@ -34,6 +34,17 @@ public class RoomGenerationCall : MonoBehaviour
         if (rayHit)
         {
             GlobalVar.CurrentRoom = rayHit.transform.parent.parent.parent.parent.gameObject;
+
+
+            Transform currRoom = GlobalVar.CurrentRoom.transform.Find("Room_Parts");
+            foreach (Transform roomPart in currRoom)
+            {
+                Transform doorParent = roomPart.Find("Doors");
+                foreach (Transform door in doorParent)
+                {
+                    door.Find("Door_Light").gameObject.SetActive(true);
+                }
+            }
         }
     }
 }

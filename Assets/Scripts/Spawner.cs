@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
                 availableEnemies.Add(enemy);
             }
         }
-        Transform enemyParent = GlobalVar.CurrentRoom.transform.GetChild(1);
+        Transform enemyParent = GlobalVar.CurrentRoom.transform.Find("Enemies");
         foreach (Transform child in transform)
         {
             child.gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
