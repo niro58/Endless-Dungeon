@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    private enum GunType { Pistol, Melee, Rifle, SMG, Sniper};
+    public enum GunName { M4, Glock, Mac_10, };
     [Header("Main")]
-    [SerializeField]
-    private GunType gunType;
-    [SerializeField]
-    private List<GunMod> availableModifications;
+    public GunName gunType;
 
-    private enum ShootingType { Classic }; // for shooting
-    [Header("Shooting")]
-    [SerializeField]
-    private ShootingType shootingType;
-    private GameObject firePoint;
-    private float shootCooldown;
-
-    
+    [HideInInspector]
+    public GunMod.FireMode fireMode = GunMod.FireMode.Single;
     public enum BulletType { Straight, ZigZag };
-    [Header("Bullet")]
     [SerializeField]
     private BulletType bulletType;
-    [SerializeField]
-    private GameObject bulletPrefab;
+    public GameObject bulletObj;
 
+
+    [Header("Stats")]
+    public int damage;
+    public float fireRate;
+    public float bulletSpeed;
+    public float bulletRange;
+    public float accuracy;
+
+    [HideInInspector]
+    public Sprite sprite;
     private PlayerStats playerStats;
+    [HideInInspector]
+    public Transform modsParent;
+    private GameObject firePoint;
+    private float shootCooldown;
     public void Start()
     {
+        sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        modsParent = gameObject.transform.Find("Mods");
         playerStats = GlobalVar.playerStats;
         firePoint = transform.Find("FirePoint").gameObject;
         
@@ -38,19 +43,22 @@ public class Gun : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse0) && Time.time >= shootCooldown)
         {
             shootCooldown = Time.time + playerStats.FireRate;
-
-            switch (shootingType)// Bullet creation, setting bullet script
-            {
-                case ShootingType.Classic:
-                    Vector3 pos = firePoint.transform.position;
-                    pos.z = 0.2f;
-                    float randRange = Random.Range(-playerStats.Accuracy, playerStats.Accuracy);
-                    float rotationZ = transform.eulerAngles.z + randRange;
-                    Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
-                    GameObject bullet = Instantiate(bulletPrefab, pos, rotation, transform.Find("bullets"));
-                    break;
-            }
+            Shoot(fireMode);
         }
 
+    }
+    public void Shoot(GunMod.FireMode type)
+    {
+        switch (type)// Bullet creation, setting bullet script
+        {
+            case GunMod.FireMode.Single:
+                Vector3 pos = firePoint.transform.position;
+                pos.z = 0.2f;
+                float randRange = Random.Range(-playerStats.Accuracy, playerStats.Accuracy);
+                float rotationZ = transform.parent.localEulerAngles.z + randRange;
+                Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
+                GameObject bullet = Instantiate(bulletObj, pos, rotation, transform.Find("bullets"));
+                break;
+        }
     }
 }

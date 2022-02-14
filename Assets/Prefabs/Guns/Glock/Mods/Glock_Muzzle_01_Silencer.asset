@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a323983a33b5043b5bf5863a3d5c67, type: 3}
   m_Name: Glock_Muzzle_01_Silencer
   m_EditorClassIdentifier: 
+  shortName: Glock Silencer
   sprite: {fileID: -3198102797266211206, guid: aef630b70c67ea14f8d127b7c3c44e55, type: 3}
   modType: 0
+  fireMode: 0
   damage: 5
-  firerate: 5
+  fireRateReduction: 2
+  bulletSpeed: -2
+  bulletRange: 1

@@ -7,7 +7,7 @@ public class Enemy01Script : MonoBehaviour // enemy that follows player by pathf
     private List<Vector3> route = new List<Vector3>();
     
     private PathFinding pathfindingScript;
-    private CustomGrid pathfindingGrid;
+    private EnemyGrid pathfindingGrid;
 
     private EnemyStats stats;
     private Animator anim;

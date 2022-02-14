@@ -17,50 +17,61 @@ public class Enemy02Script : MonoBehaviour // Enemy that goes in random directio
 
     private List<Vector2> availableDirections;
     private Vector3 moveBy;
+
+    private EnemyGrid roomMap;
     // Start is called before the first frame update
     void Start()
     {
         stats = gameObject.GetComponent<EnemyStats>();
         speed = stats.speed;
         availableDirections = new List<Vector2>();
+
+        roomMap = GlobalVar.RoomMap;
+
     }
 
     void Update()
     {
+        speed = stats.speed;
         cooldownCount -= Time.deltaTime;
         transform.position += moveBy;
         if(cooldownCount <= 0)
         {
-            for (int x = -1; x <= 1; x++)
+            cooldownCount -= Time.deltaTime;
+            transform.position += moveBy;
+            if (cooldownCount <= 0)
             {
-                for (int y = -1; y <= 1; y++)
+                for (int x = -1; x <= 1; x++)
                 {
-                    availableDirections.Add(new Vector2(x, y));
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        availableDirections.Add(new Vector2(x, y));
+                    }
                 }
+                cooldownCount = Random.Range(speed - speedRandOffset, speed + speedRandOffset);
+                int layerMask = 1 << 9 | 1 << 6;
+                layerMask = ~layerMask;
+                for (int i = 0; i < availableDirections.Count; i++)
+                {
+                    float moveDistance = Random.Range(minDistance, maxDistance);
+                    Vector2 direction = availableDirections[Random.Range(0, availableDirections.Count)];
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.3f, layerMask);
+                    Vector2 pos = transform.position;
+                    if (hit == false)
+                    {
+                        //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.green, 5f);
+
+                        LeanTween.move(gameObject, pos + (direction * moveDistance), cooldownCount);
+                        break;
+                    }
+                    else
+                    {
+                        //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.red, 5f);
+                        availableDirections.Remove(direction);
+                    }
+                }
+                availableDirections.Clear();
             }
-            cooldownCount = Random.Range(speed - speedRandOffset, speed + speedRandOffset);
-            int layerMask = 1 << 9 | 1 << 6;
-            layerMask = ~layerMask;
-            for (int i = 0; i < availableDirections.Count; i++)
-            {
-                float moveDistance = Random.Range(minDistance, maxDistance);
-                Vector2 direction = availableDirections[Random.Range(0, availableDirections.Count)];
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.3f, layerMask);
-                Vector2 pos = transform.position;
-                if (hit == false)
-                {
-                    //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.green, 5f);
-                    
-                    LeanTween.move(gameObject, pos + (direction * moveDistance),cooldownCount);
-                    break;
-                }
-                else
-                {
-                    //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.red, 5f);
-                    availableDirections.Remove(direction);
-                }
-            }
-            availableDirections.Clear();
         }
     }
 }

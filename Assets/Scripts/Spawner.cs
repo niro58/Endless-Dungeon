@@ -10,9 +10,9 @@ public class Spawner : MonoBehaviour
     private List<EnemyInfo> availableEnemies = new List<EnemyInfo>();
     void Start()
     {
-        StartCoroutine(spawnEnemies());
+        StartCoroutine(SpawnEnemies());
     }
-    IEnumerator spawnEnemies()
+    IEnumerator SpawnEnemies()
     {
         yield return new WaitForSeconds(2f);// foreach child -> get random item from dictionary -> get values from it  -> spawn the amount of mobs, decrease the number of max spawns -> if number <= 0 remove from dictionary
 

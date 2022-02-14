@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerStats : MonoBehaviour
 {
     public int Health;
-    public int Damage;
+    public float Damage;
     public float Accuracy;
     public float Speed;
     public float FireRate;
@@ -16,10 +16,24 @@ public class PlayerStats : MonoBehaviour
 
     private Animator Anim;
 
-    private GameObject Player;
+    [HideInInspector]
+    public Transform gunParent;
+    [HideInInspector]
+    public GameObject currentGun;
+    [HideInInspector]
+    public int currentGunSlot = 0;
+
+    [HideInInspector]
+    public GameObject player;
     private Dictionary<string,float> StartStats = new Dictionary<string, float>();
+
+    [HideInInspector]
+    public int coins;
     public void Awake()
     {
+        gunParent = gameObject.transform.Find("Guns");
+        currentGun = gunParent.GetChild(currentGunSlot).gameObject;
+
         StartStats["Health"] = Health;
         StartStats["Damage"] = Damage;
         StartStats["Speed"] = Speed;
@@ -29,11 +43,10 @@ public class PlayerStats : MonoBehaviour
         StartStats["BulletRange"] = BulletRange;
 
         Anim = gameObject.GetComponent<Animator>();
-        Player = gameObject;
+        player = gameObject;
 
         updatePlayerStats();
 
-        GlobalVar.Player = gameObject;
         GlobalVar.playerStats = gameObject.GetComponent<PlayerStats>();
 
 
@@ -60,10 +73,22 @@ public class PlayerStats : MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 9, false);
 
     }
+    public void addMod(GunMod gunMod, Gun.GunName Gun)
+    {
+        /*Transform modsParent = currentWeapon.GetComponent<Gun>().modsParent;
+        Debug.Log(card.modType.ToString());
+        GunModDisplay gunModDisplay = modsParent.Find(card.modType.ToString()).gameObject.GetComponent<GunModDisplay>();
+        gunModDisplay.gunMod = card;
+        gunModDisplay.updateMod();
+        updatePlayerStats();*/
+    }
+    public void addWeapon(GameObject weapon)
+    {
+
+    }
     public void updatePlayerStats()
     {
-        GameObject gun = Player.transform.Find("Guns").GetChild(GlobalVar.CurrentPlayerGunSlot).gameObject;
-        GunStats gunStats = gun.GetComponent<GunStats>();// Get Gun stats script
+        Gun gunStats = currentGun.GetComponent<Gun>();// Get Gun stats script
 
         Damage = gunStats.damage + (int)StartStats["Damage"];
         FireRate = gunStats.fireRate + StartStats["FireRate"];
@@ -71,7 +96,7 @@ public class PlayerStats : MonoBehaviour
         BulletSpeed = gunStats.bulletSpeed + StartStats["BulletSpeed"];
         BulletRange = gunStats.bulletRange + StartStats["BulletRange"];
         // Mod stats added to root object
-        foreach (Transform mod in gun.transform.Find("Mods"))
+        foreach (Transform mod in currentGun.transform.Find("Mods"))
         {
             GunModDisplay modScript = mod.gameObject.GetComponent<GunModDisplay>();
 

@@ -56,7 +56,7 @@ public class EnemyStats : MonoBehaviour
         }
         if(health <= 0)
         {
-            GlobalVar.PlayerCoins += 1;
+            GlobalVar.playerStats.coins += 1;
             Destroy(gameObject);
 
             int enemiesLeft = GlobalVar.CurrentRoom.transform.Find("Enemies").childCount;

@@ -19,17 +19,17 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     public List<Vector3> route = new List<Vector3>();
 
     [HideInInspector]
-    public CustomGrid map;
+    public EnemyGrid map;
     private GameObject currentRoom;
     private void Start()
     {
         if(target == null)
         {
-            target = GlobalVar.Player;
+            target = GlobalVar.playerStats.player;
         }
         currentRoom = GlobalVar.CurrentRoom;
     }
-    void Update()
+    void Update()// use queues
     {
         map = GlobalVar.RoomMap;
         cooldownTimeRemaining += Time.deltaTime;
@@ -42,7 +42,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
             {// If global variable currentRoom is not the same as currentRoom && ( targetNode is not the same as lastTargetNode || route list is empty) && if target node is available
                 lastTargetNode = targetNode;
                 route = getPath(map.WorldToCell(gameObject.transform.position), lastTargetNode);
-                /*
+                
                 foreach (Vector3 node in route)
                 {
                     GameObject routeDraw = Instantiate(checkerPrefab);
@@ -51,7 +51,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
                     routeDraw.transform.position = node;
                     //Debug.Log(routeDraw.transform.position);
                     routeDraw.transform.parent = GameObject.Find("Not Important").transform.GetChild(1);
-                }*/
+                }
             }
         }
         else if(route.Count != 0 && currentRoom != GlobalVar.CurrentRoom)

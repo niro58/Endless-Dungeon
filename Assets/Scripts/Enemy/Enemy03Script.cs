@@ -12,7 +12,7 @@ public class Enemy03Script : MonoBehaviour // Fly that just goes straight to pla
     void Start()
     {
         stats = gameObject.GetComponent<EnemyStats>();
-        target = GlobalVar.Player;
+        target = GlobalVar.playerStats.player;
     }
 
     void Update()

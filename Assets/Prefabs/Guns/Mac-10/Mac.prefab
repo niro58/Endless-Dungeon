@@ -96,10 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 11400000, guid: 2c47015da3bc8a84f9e198c53449c9cf, type: 2}
-  Damage: 0
-  FireRateReduction: 0
-  BulletSpeed: 0
-  BulletRange: 0
+  damage: 0
+  fireRateReduction: 0
+  bulletSpeed: 0
+  bulletRange: 0
 --- !u!1 &1529007792427109251
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,10 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 11400000, guid: 4ae6b0b3942840446a6d940f0404e453, type: 2}
-  Damage: 0
-  FireRateReduction: 0
-  BulletSpeed: 0
-  BulletRange: 0
+  damage: 0
+  fireRateReduction: 0
+  bulletSpeed: 0
+  bulletRange: 0
 --- !u!1 &3941683950283365927
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,10 +359,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 11400000, guid: 0bf6eca19c67fe041955b9d6d655374b, type: 2}
-  Damage: 0
-  FireRateReduction: 0
-  BulletSpeed: 0
-  BulletRange: 0
+  damage: 0
+  fireRateReduction: 0
+  bulletSpeed: 0
+  bulletRange: 0
 --- !u!1 &6228775525000318834
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,11 +461,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  availableModifications: []
-  Damage: 0
-  FireRate: 0.001
-  BulletSpeed: 0.001
-  BulletRange: 0.001
-  shootingType: 0
-  BulletType: 0
-  bulletPrefab: {fileID: 5820650131256853968, guid: 2bc2e7cfb05088f43b339f0ff5de36c5, type: 3}
+  fireMode: 1
+  bulletType: 0
+  bulletObj: {fileID: 0}
+  damage: 1
+  fireRate: 1
+  bulletSpeed: 1
+  bulletRange: 1
+  accuracy: 1
+  sprite: {fileID: 0}
+  modsParent: {fileID: 0}

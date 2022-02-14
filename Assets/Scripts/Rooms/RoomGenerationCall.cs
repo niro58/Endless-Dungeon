@@ -10,13 +10,13 @@ public class RoomGenerationCall : MonoBehaviour
         if (hit.collider.gameObject.tag == "Door" && GlobalVar.RoomCleared)
         {
             Vector2Int newRoomDirection = hit.gameObject.GetComponent<Door>().doorDirectionVector;
-            StartCoroutine(moveToNextRoom(newRoomDirection, hit));
+            StartCoroutine(MoveToNextRoom(newRoomDirection, hit));
         }
     }
 
-    IEnumerator moveToNextRoom(Vector2Int dir, Collision2D hit)
+    IEnumerator MoveToNextRoom(Vector2Int dir, Collision2D hit)
     {
-        if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().generateNextRoom(dir, hit.transform.parent.parent.position))
+        if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().GenerateNextRoom(dir, hit.transform.parent.parent.position))
         {
             GlobalVar.CanMove = false;
             yield return new WaitForSeconds(0.3f);

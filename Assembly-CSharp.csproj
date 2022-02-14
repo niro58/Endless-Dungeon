@@ -60,9 +60,13 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\ModCard.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy02Script.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy03Script.cs" />
+    <Compile Include="Assets\WeaponCard.cs" />
+    <Compile Include="Assets\AvailableItems.cs" />
+    <Compile Include="Assets\Enemy05Script.cs" />
     <Compile Include="Assets\Scripts\Guns\Bullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Guns\GunMod.cs" />
@@ -78,20 +82,21 @@
     <Compile Include="Assets\Scripts\SpawnerInfo.cs" />
     <Compile Include="Assets\enemy04Script.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
-    <Compile Include="Assets\Scripts\GlobalScripts\CustomGrid.cs" />
+    <Compile Include="Assets\MyMath.cs" />
+    <Compile Include="Assets\Scripts\GlobalScripts\EnemyGrid.cs" />
     <Compile Include="Assets\Scripts\Rooms\RoomGenerationCall.cs" />
     <Compile Include="Assets\Scripts\Rooms\ItemPool.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy01Script.cs" />
+    <Compile Include="Assets\RoomGenerationGrid.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Scripts\Guns\Gun.cs" />
-    <Compile Include="Assets\Scripts\Guns\GunStats.cs" />
     <Compile Include="Assets\Scripts\GlobalScripts\GlobalVar.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGunSwap.cs" />
     <Compile Include="Assets\Scripts\Enemy\PathFinding.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\GlobalScripts\GlobalFunctions.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
-    <Compile Include="Assets\Enemy05Script.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

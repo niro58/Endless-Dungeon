@@ -5,10 +5,10 @@ using System;
 public class PlayerGunSwap : MonoBehaviour
 {
     private PlayerStats stats;
-    private GameObject gunParent;
+    private Transform gunParent;
     private void Start()
     {
-        gunParent = gameObject.transform.Find("Guns").gameObject;
+        gunParent = GlobalVar.playerStats.gunParent;
         stats = gameObject.GetComponent<PlayerStats>();
         swapPlayerGun(0);
     }
@@ -16,10 +16,10 @@ public class PlayerGunSwap : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            for(int i = 1; i <= gunParent.transform.childCount; i++)
+            for(int i = 1; i <= gunParent.childCount; i++)
             {
                 int slot = i - 1;
-                if (Input.GetKeyDown(i.ToString()) && slot != GlobalVar.CurrentPlayerGunSlot)
+                if (Input.GetKeyDown(i.ToString()) && slot != GlobalVar.playerStats.currentGunSlot)
                 {
                     swapPlayerGun(slot); // decrease by 1 because getchild starts from 0
                 }
@@ -28,11 +28,15 @@ public class PlayerGunSwap : MonoBehaviour
     }
     private void swapPlayerGun(int slot)
     {
-        int currSlot = GlobalVar.CurrentPlayerGunSlot;
-        gunParent.transform.GetChild(currSlot).gameObject.SetActive(false);
-        gunParent.transform.GetChild(slot).gameObject.SetActive(true);
+        int currSlot = GlobalVar.playerStats.currentGunSlot;
 
-        GlobalVar.CurrentPlayerGunSlot = slot;
+        GameObject nextWeapon = gunParent.GetChild(slot).gameObject;
+
+        GlobalVar.playerStats.currentGun.SetActive(false);
+        nextWeapon.SetActive(true);
+
+        GlobalVar.playerStats.currentGun = nextWeapon;
+        GlobalVar.playerStats.currentGunSlot = slot;
         stats.updatePlayerStats();
     }
 }

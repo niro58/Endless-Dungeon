@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerGunMovement : MonoBehaviour
 {
     
-    private GameObject gunParent;
+    private Transform gunParent;
     private Vector3 gunScale;
     private Vector3 startPos;
     // Start is called before the first frame update
     void Start()
     {
-        gunParent = gameObject.transform.Find("Guns").gameObject;
+        gunParent = GlobalVar.playerStats.gunParent;
         gunScale = gunParent.transform.localScale;
         startPos = gunParent.transform.localPosition;
     }
@@ -28,16 +28,16 @@ public class PlayerGunMovement : MonoBehaviour
         }
         pos.x = (Mathf.Cos(angleRad) * .15f);
         pos.y = (Mathf.Sin(angleRad) * .075f);
-        gunParent.transform.localPosition = startPos + pos;
-        gunParent.transform.rotation = angleAxis;
+        gunParent.localPosition = startPos + pos;
+        gunParent.rotation = angleAxis;
 
-        if (gunParent.transform.eulerAngles.z > 90 && gunParent.transform.eulerAngles.z < 270)
+        if (gunParent.eulerAngles.z > 90 && gunParent.eulerAngles.z < 270)
         {
-            gunParent.transform.localScale = new Vector3(gunScale.x, -gunScale.y, gunScale.z);
+            gunParent.localScale = new Vector3(gunScale.x, -gunScale.y, gunScale.z);
         }
         else
         {
-            gunParent.transform.localScale = gunScale;
+            gunParent.localScale = gunScale;
         }
     }
 }

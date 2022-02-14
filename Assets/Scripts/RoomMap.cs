@@ -9,9 +9,12 @@ public class RoomMap : MonoBehaviour
 
     public GameObject checkerPrefab;
     public Vector2 mapCellSize;
+
+    EnemyGrid roomMap;
     private void Start()
     {
-        SetNewRoomMap();
+        
+        roomMap = new EnemyGrid(mapCellSize);
     }
     void Update()
     {
@@ -24,9 +27,7 @@ public class RoomMap : MonoBehaviour
     private void SetNewRoomMap()
     {
         currentRoom = GlobalVar.CurrentRoom;
-        CustomGrid roomMap = new CustomGrid(mapCellSize);
         roomMap.DrawRoomMap(currentRoom);
         GlobalVar.RoomMap = roomMap;
-
     }
 }

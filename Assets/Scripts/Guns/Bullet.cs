@@ -9,17 +9,21 @@ public class Bullet : MonoBehaviour
     [HideInInspector]
     public float speed;
     [HideInInspector]
-    public int damage;
+    public float damage;
     [HideInInspector]
     public float range;
     private float destroyTime;
     private Vector3 startPos;
+
+    private Rigidbody2D rb;
     void Start()
     {
         damage = GlobalVar.playerStats.Damage;
         speed = GlobalVar.playerStats.BulletSpeed;
         range = GlobalVar.playerStats.BulletRange;
         startPos = transform.position;
+
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -28,19 +32,18 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else
+        switch (bulletType)
         {
-            switch (bulletType)// Bullet movement, it is set on bullet creation in Gun.cs
-            {
-                case Gun.BulletType.Straight:
-                    transform.position += transform.right * (speed / 50);
-                    break;
-            }
+            case Gun.BulletType.Straight:
+
+                rb.velocity = transform.right * speed;
+                break;
         }
 
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log(col.gameObject.name);
         if(col.gameObject.layer != 8 || col.gameObject.layer != 9)
         {
             Destroy(gameObject);

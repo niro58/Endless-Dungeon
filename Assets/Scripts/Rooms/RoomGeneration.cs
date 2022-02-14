@@ -6,7 +6,7 @@ public class RoomGeneration : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> rooms;
-    private CustomGrid grid;
+    private RoomGenerationGrid grid;
     private Vector2Int cellSize = new Vector2Int(3, 3);
 
     private GameObject roomsParent;
@@ -19,11 +19,11 @@ public class RoomGeneration : MonoBehaviour
     {
         cellSize = Vector2Int.FloorToInt(GlobalVar.CurrentRoom.transform.root.localScale);
 
-        grid = new CustomGrid(cellSize);
+        grid = new RoomGenerationGrid(cellSize);
         grid.FillCell(new Vector2Int(0, 0));
         roomsParent = GameObject.Find("Rooms");
     }
-    public bool generateNextRoom(Vector2Int roomDirection, Vector3 roomCellPos)
+    public bool GenerateNextRoom(Vector2Int roomDirection, Vector3 roomCellPos)
     {
         Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
         if (grid.IsAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
@@ -38,7 +38,7 @@ public class RoomGeneration : MonoBehaviour
             listOfRooms.AddRange(rooms);
             while (listOfRooms.Count > 0)// Start of the room selection
             {
-                GlobalVar.RoomCleared = false;
+                //GlobalVar.RoomCleared = false;
                 int randNum = Random.Range(0, listOfRooms.Count);
 
                 GameObject randRoom = Instantiate(listOfRooms[randNum], Vector3.zero, Quaternion.identity, roomsParent.transform); // Selecting a random room based on randNum, and then deleting the room from array

@@ -5,14 +5,11 @@ using UnityEngine;
 public static class GlobalVar
 {
     public static GameObject CurrentRoom;
-    public static CustomGrid RoomMap;
+    public static EnemyGrid RoomMap;
 
-    public static GameObject Player;
-    public static int PlayerCoins;
     public static bool CanMove = true;
     public static bool RoomCleared = true;
 
-    public static int CurrentPlayerGunSlot = 0;
     public static PlayerStats playerStats;
     // Player Stats
 
