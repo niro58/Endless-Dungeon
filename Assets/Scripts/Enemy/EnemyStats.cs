@@ -35,7 +35,29 @@ public class EnemyStats : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
 
         float level = GlobalVar.CurrentLevel;
-
+        
+        int mobType = Random.Range(0, 5);
+        Color32 color = new Color32();
+        switch (mobType)
+        {
+            case 0:
+                color = Color.green;
+                health += healthMultiplier * 0.2f * level;
+                break;
+            case 1:
+                color = Color.blue;
+                speed += speedMultiplier * 0.2f * level;
+                break;
+            case 2:
+                color = Color.red;
+                damage += damageMultiplier * 0.2f * level;
+                break;
+            case 3:
+                color = Color.yellow;
+                fireRate += fireRateMultiplier * 0.2f * level;
+                break;
+        }
+        gameObject.GetComponent<SpriteRenderer>().color = color;
         health += healthMultiplier * level;
         speed += speedMultiplier * level;
         damage += damageMultiplier * level;
@@ -45,39 +67,26 @@ public class EnemyStats : MonoBehaviour
         onCollisionDamage += onCollisionDamageMultiplier * level;
         onCollisionKnockback += onCollisionKnockbackMultiplier * level;
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    public void getHit()
     {
-        if (col.gameObject.layer == 12)// If layer == Bullet
-        {
 
-            animator.Play("Enemy-Hit");
-            Destroy(col.gameObject);
-            health -= GlobalVar.playerStats.Damage;
-        }
-        if(health <= 0)
+        health -= GlobalVar.playerStats.damage;
+        if (health <= 0)
         {
+            speed = 0;
+
+            GlobalFunctions.SetAllBehaviour(gameObject, false);
+            LeanTween.alpha(gameObject, 0, 2);
+            Destroy(gameObject, 2);
+
             GlobalVar.playerStats.coins += 1;
-            Destroy(gameObject);
-
-            int enemiesLeft = GlobalVar.CurrentRoom.transform.Find("Enemies").childCount;
-            Debug.Log(GlobalVar.RoomCleared);
-            if(enemiesLeft == 0)
-            {
-                GlobalVar.RoomCleared = true;
-
-                Transform currRoom = GlobalVar.CurrentRoom.transform.Find("Room_Parts");
-                foreach(Transform roomPart in currRoom)
-                {
-                    Transform doorParent = roomPart.Find("Doors");
-                    foreach(Transform door in doorParent)
-                    {
-                        Debug.Log(door.name);
-                        door.GetChild(0).gameObject.SetActive(true);
-                    }
-                }
-
-            }
+            GlobalVar.enemiesLeft -= 1;
+            return;
         }
-        
+        else
+        {
+            animator.Play("Enemy-Hit");
+        }
     }
+
 }

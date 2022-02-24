@@ -4,11 +4,11 @@ using UnityEngine;
 
 public static class GlobalVar
 {
-    public static GameObject CurrentRoom;
-    public static EnemyGrid RoomMap;
+    public static int enemiesLeft;
+    public static GameObject currentRoom;
+    public static EnemyGrid roomMap;
 
-    public static bool CanMove = true;
-    public static bool RoomCleared = true;
+    public static bool canMove = true;
 
     public static PlayerStats playerStats;
     // Player Stats
@@ -16,5 +16,7 @@ public static class GlobalVar
     // Spawner
     public static float CurrentLevel;
     public static List<EnemyInfo> AvailableSpawnEnemies;
+
+    public static Dictionary<string, GameObject> importantGameObjects = new Dictionary<string, GameObject>();
 
 }

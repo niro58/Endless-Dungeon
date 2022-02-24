@@ -16,10 +16,9 @@ public class PlayerGunSwap : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            for(int i = 1; i <= gunParent.childCount; i++)
+            for(int slot = 0; slot < gunParent.childCount; slot++)
             {
-                int slot = i - 1;
-                if (Input.GetKeyDown(i.ToString()) && slot != GlobalVar.playerStats.currentGunSlot)
+                if (Input.GetKeyDown((slot + 1).ToString()) && slot != GlobalVar.playerStats.currentGunSlot)
                 {
                     swapPlayerGun(slot); // decrease by 1 because getchild starts from 0
                 }
@@ -28,10 +27,12 @@ public class PlayerGunSwap : MonoBehaviour
     }
     private void swapPlayerGun(int slot)
     {
-        int currSlot = GlobalVar.playerStats.currentGunSlot;
 
         GameObject nextWeapon = gunParent.GetChild(slot).gameObject;
-
+        if (nextWeapon.GetComponent<Gun>().isActive == false)
+        {
+            return;
+        }
         GlobalVar.playerStats.currentGun.SetActive(false);
         nextWeapon.SetActive(true);
 

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: M4_Mag_01
   m_EditorClassIdentifier: 
   shortName: M4 Small Mag
+  gun: 0
   sprite: {fileID: 6820856509940793013, guid: 8b832b40dbd929a4f9b141da67f7a757, type: 3}
-  modType: 2
+  modPart: 2
   fireMode: 0
   damage: 0
   fireRateReduction: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2783991503731646100}
   - component: {fileID: 2783991503731646101}
   - component: {fileID: 2783991503731646096}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Enemy-04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  bullet: {fileID: 3010013307368176278, guid: 3b2237d664db87e469e6cdc9a0b65cf0, type: 3}
+  bullet: {fileID: 3010013307368176278, guid: 487153ad5ebeaf646b13785736b0ac7f, type: 3}
 --- !u!95 &2783991503731646096
 Animator:
   serializedVersion: 3

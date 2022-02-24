@@ -13,11 +13,11 @@ public class RoomGeneration : MonoBehaviour
 
     public void Awake()
     {
-        GlobalVar.CurrentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
+        GlobalVar.currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
     }
     public void Start()
     {
-        cellSize = Vector2Int.FloorToInt(GlobalVar.CurrentRoom.transform.root.localScale);
+        cellSize = Vector2Int.FloorToInt(GlobalVar.currentRoom.transform.root.localScale);
 
         grid = new RoomGenerationGrid(cellSize);
         grid.FillCell(new Vector2Int(0, 0));
@@ -28,12 +28,11 @@ public class RoomGeneration : MonoBehaviour
         Vector2Int roomCell = grid.WorldToCell(roomCellPos); // Getting the cell of the current room cell
         if (grid.IsAvailable(roomCell + roomDirection))// If the next cell in the direction(left,bottom,top,right) is filled than script ends
         {
-            GlobalVar.CurrentLevel += 1;
             return false;
         }
         else
         {
-            GlobalVar.CurrentLevel += 2;
+            GlobalVar.CurrentLevel += 1;
             List<GameObject> listOfRooms = new List<GameObject>();
             listOfRooms.AddRange(rooms);
             while (listOfRooms.Count > 0)// Start of the room selection

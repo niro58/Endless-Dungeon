@@ -7,7 +7,7 @@ public class RoomGenerationCall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hit)
     {
         // On collision with door it moves the player forward to next room
-        if (hit.collider.gameObject.tag == "Door" && GlobalVar.RoomCleared)
+        if (hit.collider.gameObject.tag == "Door" && GlobalVar.enemiesLeft == 0)
         {
             Vector2Int newRoomDirection = hit.gameObject.GetComponent<Door>().doorDirectionVector;
             StartCoroutine(MoveToNextRoom(newRoomDirection, hit));
@@ -18,9 +18,9 @@ public class RoomGenerationCall : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().GenerateNextRoom(dir, hit.transform.parent.parent.position))
         {
-            GlobalVar.CanMove = false;
+            GlobalVar.canMove = false;
             yield return new WaitForSeconds(0.3f);
-            GlobalVar.CanMove = true;
+            GlobalVar.canMove = true;
         }
 
         transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, transform.position.z);
@@ -33,18 +33,23 @@ public class RoomGenerationCall : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, inversedDir, 0.5f, layerMask);
         if (rayHit)
         {
-            GlobalVar.CurrentRoom = rayHit.transform.parent.parent.parent.parent.gameObject;
+            GlobalVar.currentRoom = rayHit.transform.parent.parent.parent.parent.gameObject;
 
 
-            Transform currRoom = GlobalVar.CurrentRoom.transform.Find("Room_Parts");
+            Transform currRoom = GlobalVar.currentRoom.transform.Find("Room_Parts");
             foreach (Transform roomPart in currRoom)
             {
                 Transform doorParent = roomPart.Find("Doors");
                 foreach (Transform door in doorParent)
                 {
-                    door.Find("Door_Light").gameObject.SetActive(true);
+                    door.Find("Door_Light").gameObject.SetActive(false);
                 }
             }
+        }
+        GlobalVar.importantGameObjects["CardsParent"].SetActive(true);
+        if (GlobalVar.CurrentLevel % 5 == 0)
+        {
+            GlobalVar.importantGameObjects["CardsParent"].SetActive(true);
         }
     }
 }

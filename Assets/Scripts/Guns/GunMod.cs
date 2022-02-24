@@ -8,17 +8,19 @@ public class GunMod : ScriptableObject
     public Gun.GunName gun;
     public Sprite sprite;
 
-    public enum ModType { Buff, Mod };
-    public ModType modType;
     public enum ModPart { Muzzle, Optic, Mag, Buff};
+    [Header("Mod Type")]
     public ModPart modPart;
 
     public enum FireMode {None ,Single, TripleShot, TripleShot_2};
     public FireMode fireMode;
+
+    [Header("Mod Stats")]
     [Space(10)]
     public float damage;
-    public float fireRateReduction;
+    public float fireRate;
     public float bulletSpeed;
     public float bulletRange;
+    public float accuracy;
 }
 

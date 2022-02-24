@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Glock_Muzzle_01_Silencer
   m_EditorClassIdentifier: 
   shortName: Glock Silencer
+  gun: 1
   sprite: {fileID: -3198102797266211206, guid: aef630b70c67ea14f8d127b7c3c44e55, type: 3}
-  modType: 0
-  fireMode: 0
-  damage: 5
-  fireRateReduction: 2
-  bulletSpeed: -2
-  bulletRange: 1
+  modPart: 0
+  fireMode: 2
+  damage: 0
+  fireRateReduction: 10
+  bulletSpeed: 0
+  bulletRange: 0.3
+  accuracy: -5

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public bool isActive = false;
     public enum GunName { M4, Glock, Mac_10, };
     [Header("Main")]
-    public GunName gunType;
+    public GunName gunName;
 
-    [HideInInspector]
     public GunMod.FireMode fireMode = GunMod.FireMode.Single;
     public enum BulletType { Straight, ZigZag };
     [SerializeField]
@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 
 
     [Header("Stats")]
-    public int damage;
+    public float damage;
     public float fireRate;
     public float bulletSpeed;
     public float bulletRange;
@@ -32,6 +32,7 @@ public class Gun : MonoBehaviour
     private float shootCooldown;
     public void Start()
     {
+        transform.name = gunName.ToString();
         sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         modsParent = gameObject.transform.Find("Mods");
         playerStats = GlobalVar.playerStats;
@@ -40,9 +41,10 @@ public class Gun : MonoBehaviour
     }
     public void Update()
     {
+        gameObject.SetActive(isActive);
         if(Input.GetKey(KeyCode.Mouse0) && Time.time >= shootCooldown)
         {
-            shootCooldown = Time.time + playerStats.FireRate;
+            shootCooldown = Time.time + playerStats.fireRate;
             Shoot(fireMode);
         }
 
@@ -52,13 +54,30 @@ public class Gun : MonoBehaviour
         switch (type)// Bullet creation, setting bullet script
         {
             case GunMod.FireMode.Single:
-                Vector3 pos = firePoint.transform.position;
-                pos.z = 0.2f;
-                float randRange = Random.Range(-playerStats.Accuracy, playerStats.Accuracy);
-                float rotationZ = transform.parent.localEulerAngles.z + randRange;
-                Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
-                GameObject bullet = Instantiate(bulletObj, pos, rotation, transform.Find("bullets"));
+                StartCoroutine(SpawnBullet(1));
+                break;
+            case GunMod.FireMode.TripleShot:
+                StartCoroutine(SpawnBullet(3, 0.1f));
                 break;
         }
+    }
+    IEnumerator SpawnBullet(int number, float delay = 0)
+    {
+        for(int i = 0; i < number; i++)
+        {
+            getShootingData(out Vector3 pos, out Quaternion rotation);
+            GameObject bullet = Instantiate(bulletObj, pos, rotation);
+
+            yield return new WaitForSeconds(delay);
+        }
+
+    }
+    public void getShootingData(out Vector3 pos, out Quaternion rotation)
+    {
+        pos = firePoint.transform.position;
+        pos.z = 0.2f;
+        float randRange = Random.Range(-playerStats.accuracy, playerStats.accuracy);
+        float rotationZ = transform.parent.localEulerAngles.z + randRange;
+        rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
     }
 }

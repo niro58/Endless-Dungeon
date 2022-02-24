@@ -11,23 +11,23 @@ public class RoomMap : MonoBehaviour
     public Vector2 mapCellSize;
 
     EnemyGrid roomMap;
-    private void Start()
+    private void Awake()
     {
-        
+        GlobalVar.importantGameObjects.Add("Scripts", gameObject);
         roomMap = new EnemyGrid(mapCellSize);
     }
     void Update()
     {
         
-        if (currentRoom != GlobalVar.CurrentRoom)
+        if (currentRoom != GlobalVar.currentRoom)
         {
             SetNewRoomMap();
         }
     }
     private void SetNewRoomMap()
     {
-        currentRoom = GlobalVar.CurrentRoom;
+        currentRoom = GlobalVar.currentRoom;
         roomMap.DrawRoomMap(currentRoom);
-        GlobalVar.RoomMap = roomMap;
+        GlobalVar.roomMap = roomMap;
     }
 }

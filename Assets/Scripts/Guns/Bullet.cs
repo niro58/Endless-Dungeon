@@ -18,9 +18,9 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
-        damage = GlobalVar.playerStats.Damage;
-        speed = GlobalVar.playerStats.BulletSpeed;
-        range = GlobalVar.playerStats.BulletRange;
+        damage = GlobalVar.playerStats.damage;
+        speed = GlobalVar.playerStats.bulletSpeed;
+        range = GlobalVar.playerStats.bulletRange;
         startPos = transform.position;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -35,18 +35,17 @@ public class Bullet : MonoBehaviour
         switch (bulletType)
         {
             case Gun.BulletType.Straight:
-
                 rb.velocity = transform.right * speed;
                 break;
         }
 
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name);
-        if(col.gameObject.layer != 8 || col.gameObject.layer != 9)
+        Destroy(gameObject);
+        if (col.gameObject.layer == 8 || col.gameObject.layer == 9)
         {
-            Destroy(gameObject);
+            col.GetComponent<EnemyStats>().getHit();
         }
     }
 }

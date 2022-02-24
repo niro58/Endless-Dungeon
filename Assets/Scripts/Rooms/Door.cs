@@ -23,4 +23,11 @@ public class Door : MonoBehaviour // Script gets info in what direction the door
                 break;
         }
     }
+    public void Update()
+    {
+        if(GlobalVar.enemiesLeft == 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
 }

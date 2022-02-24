@@ -27,22 +27,22 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
         {
             target = GlobalVar.playerStats.player;
         }
-        currentRoom = GlobalVar.CurrentRoom;
+        currentRoom = GlobalVar.currentRoom;
     }
     void Update()// use queues
     {
-        map = GlobalVar.RoomMap;
+        map = GlobalVar.roomMap;
         cooldownTimeRemaining += Time.deltaTime;
         if(currentRoom != null && cooldownTimeRemaining > randCooldownTimer)
         {
             randCooldownTimer = UnityEngine.Random.Range(0.1f, cooldown);
             cooldownTimeRemaining = 0;
             targetNode = map.WorldToCell(target.transform.position);
-            if (currentRoom == GlobalVar.CurrentRoom && (targetNode != lastTargetNode || route.Count() == 0) && map.IsAvailable(targetNode))
+            if (currentRoom == GlobalVar.currentRoom && (targetNode != lastTargetNode || route.Count() == 0) && map.IsAvailable(targetNode))
             {// If global variable currentRoom is not the same as currentRoom && ( targetNode is not the same as lastTargetNode || route list is empty) && if target node is available
                 lastTargetNode = targetNode;
                 route = getPath(map.WorldToCell(gameObject.transform.position), lastTargetNode);
-                
+                /*
                 foreach (Vector3 node in route)
                 {
                     GameObject routeDraw = Instantiate(checkerPrefab);
@@ -51,10 +51,10 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
                     routeDraw.transform.position = node;
                     //Debug.Log(routeDraw.transform.position);
                     routeDraw.transform.parent = GameObject.Find("Not Important").transform.GetChild(1);
-                }
+                }*/
             }
         }
-        else if(route.Count != 0 && currentRoom != GlobalVar.CurrentRoom)
+        else if(route.Count != 0 && currentRoom != GlobalVar.currentRoom)
         {
             route.Clear();
         }

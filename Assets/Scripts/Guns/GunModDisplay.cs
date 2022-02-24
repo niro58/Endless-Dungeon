@@ -11,12 +11,13 @@ public class GunModDisplay : MonoBehaviour
     [HideInInspector]
     public float damage;
     [HideInInspector]
-    public float fireRateReduction;// Something like FireRate Cooldown Reduction/Increase
+    public float fireRate;
     [HideInInspector]
     public float bulletSpeed;
     [HideInInspector]
     public float bulletRange;
-
+    [HideInInspector]
+    public float accuracy;
     void Start()
     {
         startPos = transform.localPosition;
@@ -48,8 +49,9 @@ public class GunModDisplay : MonoBehaviour
         transform.GetComponent<SpriteRenderer>().sprite = gunMod.sprite;
 
         damage = gunMod.damage;
-        fireRateReduction = gunMod.fireRateReduction;
+        fireRate = gunMod.fireRate;
         bulletSpeed = gunMod.bulletSpeed;
         bulletRange = gunMod.bulletRange;
+        accuracy = gunMod.accuracy;
     }
 }

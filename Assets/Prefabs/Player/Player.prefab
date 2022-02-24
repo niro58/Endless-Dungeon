@@ -132,14 +132,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b394770b863a44ca8f54dff3698085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
-  Damage: 0
-  Accuracy: 0
-  Speed: 0
-  FireRate: 0
-  FireRateReduction: 0
-  BulletSpeed: 0
-  BulletRange: 0
+  health: 2
+  damage: 1
+  accuracy: 0
+  speed: 2
+  fireRate: 0
+  bulletSpeed: 2
+  bulletRange: 2
+  damageRed: 0
+  accuracyRed: 0
+  fireRateRed: 0
+  bulletSpeedRed: 0
+  bulletRangeRed: 0
   gunParent: {fileID: 0}
   currentGun: {fileID: 0}
   currentGunSlot: 0

@@ -26,7 +26,7 @@ public class Enemy02Script : MonoBehaviour // Enemy that goes in random directio
         speed = stats.speed;
         availableDirections = new List<Vector2>();
 
-        roomMap = GlobalVar.RoomMap;
+        roomMap = GlobalVar.roomMap;
 
     }
 
