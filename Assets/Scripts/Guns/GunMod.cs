@@ -17,8 +17,8 @@ public class GunMod : ScriptableObject
 
     [Header("Mod Stats")]
     [Space(10)]
-    public float damage;
-    public float fireRate;
+    public float damageRed;
+    public float fireRateRed;
     public float bulletSpeed;
     public float bulletRange;
     public float accuracy;

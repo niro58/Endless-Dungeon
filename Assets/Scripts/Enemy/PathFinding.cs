@@ -25,7 +25,7 @@ public class PathFinding : MonoBehaviour // Pathfinding V.1 Still working on
     {
         if(target == null)
         {
-            target = GlobalVar.playerStats.player;
+            target = GlobalVar.player.player;
         }
         currentRoom = GlobalVar.currentRoom;
     }

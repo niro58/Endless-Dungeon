@@ -38,11 +38,11 @@ public class EnemyGrid
             return false;
         }
     }
-    public Dictionary<Vector2Int,string> GetAvailableCell(Vector2Int cell)
+    public string GetCellValue(Vector2Int cell)
     {
         if (IsAvailable(cell))
         {
-            return new Dictionary<Vector2Int, string> { { cell, filledCells[cell] } };
+            return filledCells[cell];
         }
         return null;
     }
@@ -66,7 +66,7 @@ public class EnemyGrid
         }
         return nodes;
     }
-    public Dictionary<Vector2Int, string> getFreeCells()
+    public Dictionary<Vector2Int, string> GetFreeCells()
     {
         return filledCells.Where(p => p.Value == null).ToDictionary(p => p.Key, p => p.Value);
     }
@@ -85,11 +85,9 @@ public class EnemyGrid
                     Vector2Int cell = roomCell + new Vector2Int(x, y);
                     Vector3 pos = CellToWorld(cell);
 
-                    string[] maskLayers = new string[] { "Player", "GroundEnemy", "FlyingEnemy" };
+                    string[] maskLayers = new string[] { "Room", "Obstacle" };
                     LayerMask layerMask = LayerMask.GetMask(maskLayers);
-                    layerMask = ~layerMask;
                     RaycastHit2D hit = Physics2D.BoxCast(pos, cellSize, 0, new Vector2(0, 0), Mathf.Infinity, layerMask);
-
                     if (!filledCells.ContainsKey(cell)){
                         if (hit == false)
                         {

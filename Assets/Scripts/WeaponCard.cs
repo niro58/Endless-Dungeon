@@ -14,7 +14,7 @@ public class WeaponCard : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         parent = gameObject.transform.parent.gameObject;
-        availableItems = GlobalVar.importantGameObjects["Scripts"].GetComponent<AvailableItems>();
+        availableItems = GlobalVar.importantPrefabs["Scripts"].GetComponent<AvailableItems>();
         generateCard();
     }
     private void OnEnable()
@@ -34,7 +34,7 @@ public class WeaponCard : MonoBehaviour, IPointerClickHandler
         }
 
         parent.gameObject.SetActive(false);
-        GlobalVar.playerStats.addWeapon(selectedWeapon);
+        GlobalVar.player.AddWeapon(selectedWeapon);
     }
     private void generateCard()
     {

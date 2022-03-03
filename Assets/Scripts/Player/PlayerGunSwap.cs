@@ -4,12 +4,12 @@ using UnityEngine;
 using System;
 public class PlayerGunSwap : MonoBehaviour
 {
-    private PlayerStats stats;
+    private Player stats;
     private Transform gunParent;
     private void Start()
     {
-        gunParent = GlobalVar.playerStats.gunParent;
-        stats = gameObject.GetComponent<PlayerStats>();
+        gunParent = GlobalVar.player.gunParent;
+        stats = gameObject.GetComponent<Player>();
         swapPlayerGun(0);
     }
     private void Update()
@@ -18,7 +18,7 @@ public class PlayerGunSwap : MonoBehaviour
         {
             for(int slot = 0; slot < gunParent.childCount; slot++)
             {
-                if (Input.GetKeyDown((slot + 1).ToString()) && slot != GlobalVar.playerStats.currentGunSlot)
+                if (Input.GetKeyDown((slot + 1).ToString()) && slot != GlobalVar.player.currentGunSlot)
                 {
                     swapPlayerGun(slot); // decrease by 1 because getchild starts from 0
                 }
@@ -33,11 +33,11 @@ public class PlayerGunSwap : MonoBehaviour
         {
             return;
         }
-        GlobalVar.playerStats.currentGun.SetActive(false);
+        GlobalVar.player.currentGun.SetActive(false);
         nextWeapon.SetActive(true);
 
-        GlobalVar.playerStats.currentGun = nextWeapon;
-        GlobalVar.playerStats.currentGunSlot = slot;
-        stats.updatePlayerStats();
+        GlobalVar.player.currentGun = nextWeapon;
+        GlobalVar.player.currentGunSlot = slot;
+        stats.UpdatePlayerStats();
     }
 }

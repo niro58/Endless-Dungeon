@@ -32,7 +32,7 @@ public class RoomGeneration : MonoBehaviour
         }
         else
         {
-            GlobalVar.CurrentLevel += 1;
+            GlobalVar.currentLevel += 1;
             List<GameObject> listOfRooms = new List<GameObject>();
             listOfRooms.AddRange(rooms);
             while (listOfRooms.Count > 0)// Start of the room selection

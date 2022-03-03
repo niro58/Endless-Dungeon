@@ -13,7 +13,7 @@ public class ModCard : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         parent = gameObject.transform.parent.gameObject;
-        availableItems = GlobalVar.importantGameObjects["Scripts"].GetComponent<AvailableItems>();
+        availableItems = GlobalVar.importantPrefabs["Scripts"].GetComponent<AvailableItems>();
         generateCard();
     }
     private void OnEnable()
@@ -32,7 +32,7 @@ public class ModCard : MonoBehaviour, IPointerClickHandler
 
 
         parent.gameObject.SetActive(false);
-        GlobalVar.playerStats.AddMod(selectedMod);
+        GlobalVar.player.AddMod(selectedMod);
     }
     private void generateCard()
     {

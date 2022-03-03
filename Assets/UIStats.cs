@@ -5,11 +5,12 @@ using TMPro;
 public class UIStats : MonoBehaviour
 {
     PlayerStats playerStats;
-
+    TextMeshProUGUI textUGUI;
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = GlobalVar.playerStats;
+        playerStats = GlobalVar.player.playerStats;
+        textUGUI = gameObject.GetComponent<TextMeshProUGUI>();
         UpdateStats();
         InvokeRepeating("UpdateStats", 2.0f, 4);
     }
@@ -18,25 +19,28 @@ public class UIStats : MonoBehaviour
         switch (name)
         {
             case "Health_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.health.ToString();
+                textUGUI.text = playerStats.health.ToString();
                 break;
             case "Speed_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.speed.ToString();
+                textUGUI.text = playerStats.speed.ToString();
                 break;
             case "Damage_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.damage.ToString();
+                textUGUI.text = playerStats.damage.ToString();
                 break;
             case "Firerate_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.fireRate.ToString();
+                textUGUI.text = playerStats.fireRate.ToString();
                 break;
             case "BulletSpeed_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.bulletSpeed.ToString();
+                textUGUI.text = playerStats.bulletSpeed.ToString();
                 break;
             case "BulletRange_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.bulletRange.ToString();
+                textUGUI.text = playerStats.bulletRange.ToString();
                 break;
             case "Accuracy_Value":
-                gameObject.GetComponent<TextMeshProUGUI>().text = playerStats.accuracy.ToString();
+                textUGUI.text = playerStats.accuracy.ToString();
+                break;
+            case "Coin_Value":
+                textUGUI.text = playerStats.coins.ToString();
                 break;
         }
     }

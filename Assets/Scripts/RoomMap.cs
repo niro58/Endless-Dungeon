@@ -10,11 +10,10 @@ public class RoomMap : MonoBehaviour
     public GameObject checkerPrefab;
     public Vector2 mapCellSize;
 
-    EnemyGrid roomMap;
+    EnemyGrid enemyGrid;
     private void Awake()
     {
-        GlobalVar.importantGameObjects.Add("Scripts", gameObject);
-        roomMap = new EnemyGrid(mapCellSize);
+        enemyGrid = new EnemyGrid(mapCellSize);
     }
     void Update()
     {
@@ -27,7 +26,20 @@ public class RoomMap : MonoBehaviour
     private void SetNewRoomMap()
     {
         currentRoom = GlobalVar.currentRoom;
-        roomMap.DrawRoomMap(currentRoom);
-        GlobalVar.roomMap = roomMap;
+        enemyGrid.DrawRoomMap(currentRoom);
+        GlobalVar.roomMap = enemyGrid;
+        /*
+        foreach(KeyValuePair<Vector2Int, string> cell in enemyGrid.filledCells)
+        {
+            GameObject createdCell = Instantiate(checkerPrefab, enemyGrid.CellToWorld(cell.Key), Quaternion.identity, transform);
+            if (cell.Value == null)
+            {
+                createdCell.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else
+            {
+                createdCell.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }*/
     }
 }

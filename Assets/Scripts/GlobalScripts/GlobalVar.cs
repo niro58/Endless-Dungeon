@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +10,14 @@ public static class GlobalVar
 
     public static bool canMove = true;
 
-    public static PlayerStats playerStats;
+    public static Player player;
+    public static PlayerStats playerStats = new PlayerStats();
     // Player Stats
 
     // Spawner
-    public static float CurrentLevel;
-    public static List<EnemyInfo> AvailableSpawnEnemies;
+    public static int currentLevel;
+    public static List<GameObject> availableEnemies;
 
-    public static Dictionary<string, GameObject> importantGameObjects = new Dictionary<string, GameObject>();
+    public static Dictionary<string, GameObject> importantPrefabs = new Dictionary<string, GameObject>();
 
 }

@@ -5,18 +5,10 @@ using UnityEngine;
 public class SpawnerInfo : MonoBehaviour
 {
     [SerializeField]
-    public GameObject[] availableEnemies;
-
-    List<EnemyInfo> enemyList = new List<EnemyInfo>();
-    private void Awake()
+    public List<GameObject> availableEnemies = new List<GameObject>();
+    public void Start()
     {
-        foreach (GameObject enemy in availableEnemies)
-        {
-            EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-            enemyList.Add(new EnemyInfo(enemy, enemyStats));
-        }
-
-        GlobalVar.AvailableSpawnEnemies = enemyList;
+        GlobalVar.availableEnemies = availableEnemies;
     }
-    
+
 }

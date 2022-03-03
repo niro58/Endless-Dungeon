@@ -68,11 +68,12 @@
     <Compile Include="Assets\Scripts\AvailableItems.cs" />
     <Compile Include="Assets\Scripts\Enemy05Script.cs" />
     <Compile Include="Assets\Scripts\Guns\Bullet.cs" />
-    <Compile Include="Assets\Enemy_Bullet.cs" />
+    <Compile Include="Assets\EnemyBulletPredictive.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Guns\GunMod.cs" />
+    <Compile Include="Assets\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\RoomMap.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\SpawnerEnemyData.cs" />
     <Compile Include="Assets\Scripts\Guns\GunModDisplay.cs" />
     <Compile Include="Assets\Scripts\Rooms\Door.cs" />
@@ -81,10 +82,10 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\Scripts\SpawnerInfo.cs" />
-    <Compile Include="Assets\Scripts\enemy04Script.cs" />
+    <Compile Include="Assets\Scripts\Enemy04Script.cs" />
+    <Compile Include="Assets\ShopItem.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\CardsParent.cs" />
-    <Compile Include="Assets\Scripts\MyMath.cs" />
     <Compile Include="Assets\Scripts\GlobalScripts\EnemyGrid.cs" />
     <Compile Include="Assets\Scripts\Rooms\RoomGenerationCall.cs" />
     <Compile Include="Assets\Scripts\Rooms\ItemPool.cs" />
@@ -92,14 +93,17 @@
     <Compile Include="Assets\Scripts\RoomGenerationGrid.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Scripts\Guns\Gun.cs" />
+    <Compile Include="Assets\EnemyBulletClassic.cs" />
     <Compile Include="Assets\Scripts\GlobalScripts\GlobalVar.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGunSwap.cs" />
     <Compile Include="Assets\Scripts\Enemy\PathFinding.cs" />
+    <Compile Include="Assets\UIStats.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\GlobalScripts\GlobalFunctions.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
-    <Compile Include="Assets\UIStats.cs" />
+    <Compile Include="Assets\UITransition.cs" />
+    <Compile Include="Assets\SceneLoader.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

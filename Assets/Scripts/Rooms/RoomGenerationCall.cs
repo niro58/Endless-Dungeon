@@ -46,10 +46,9 @@ public class RoomGenerationCall : MonoBehaviour
                 }
             }
         }
-        GlobalVar.importantGameObjects["CardsParent"].SetActive(true);
-        if (GlobalVar.CurrentLevel % 5 == 0)
+        if (GlobalVar.currentLevel % 5 == 0)
         {
-            GlobalVar.importantGameObjects["CardsParent"].SetActive(true);
+            GlobalVar.importantPrefabs["CardsParent"].SetActive(true);
         }
     }
 }

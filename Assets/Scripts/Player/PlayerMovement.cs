@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GlobalVar.canMove)
         {
-            moveThrust = GlobalVar.playerStats.speed;
+            moveThrust = GlobalVar.player.playerStats.speed;
             // Movement part
             movement = new Vector2(Input.GetAxisRaw("Horizontal") * moveThrust, Input.GetAxisRaw("Vertical") * moveThrust);
             rb.velocity = movement;

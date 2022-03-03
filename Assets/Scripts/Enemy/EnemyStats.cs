@@ -29,14 +29,13 @@ public class EnemyStats : MonoBehaviour
     public float bulletSpeedMultiplier;
     public float bulletRangeMultiplier;
     public float onCollisionDamageMultiplier;
-    public float onCollisionKnockbackMultiplier;
     private void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
 
-        float level = GlobalVar.CurrentLevel;
+        float level = GlobalVar.currentLevel;
         
-        int mobType = Random.Range(0, 5);
+        int mobType = Random.Range(0, 3);
         Color32 color = new Color32();
         switch (mobType)
         {
@@ -65,12 +64,11 @@ public class EnemyStats : MonoBehaviour
         bulletSpeed += bulletSpeedMultiplier * level;
         bulletRange += bulletRangeMultiplier * level;
         onCollisionDamage += onCollisionDamageMultiplier * level;
-        onCollisionKnockback += onCollisionKnockbackMultiplier * level;
     }
-    public void getHit()
+    public void GetHit()
     {
 
-        health -= GlobalVar.playerStats.damage;
+        health -= GlobalVar.player.playerStats.damage;
         if (health <= 0)
         {
             speed = 0;
@@ -79,7 +77,7 @@ public class EnemyStats : MonoBehaviour
             LeanTween.alpha(gameObject, 0, 2);
             Destroy(gameObject, 2);
 
-            GlobalVar.playerStats.coins += 1;
+            GlobalVar.player.playerStats.coins += GlobalVar.currentLevel;
             GlobalVar.enemiesLeft -= 1;
             return;
         }

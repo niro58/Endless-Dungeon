@@ -4,10 +4,10 @@ using UnityEngine;
 using System.Linq;
 public class Spawner : MonoBehaviour
 {
-    private enum EnemyType { Ground, Air, Both };
+    private enum EnemyType { Ground, Air};
     private EnemyType enemyType;
 
-    private List<EnemyInfo> availableEnemies = new List<EnemyInfo>();
+    private List<GameObject> availableEnemies = new List<GameObject>();
     void Start()
     {
         StartCoroutine(SpawnEnemies());
@@ -30,7 +30,8 @@ public class Spawner : MonoBehaviour
         {
             enemyType = EnemyType.Ground;
         }
-        foreach (EnemyInfo enemy in GlobalVar.AvailableSpawnEnemies)
+
+        foreach (GameObject enemy in GlobalVar.availableEnemies)
         {
             if (enemyType == EnemyType.Ground && enemy.gameObject.layer == 8)
             {
@@ -44,11 +45,8 @@ public class Spawner : MonoBehaviour
         Transform enemyParent = GlobalVar.currentRoom.transform.Find("Enemies");
         foreach (Transform child in transform)
         {
-            int randNum = Random.Range(0, availableEnemies.Count);// to do : spawn amount
-            EnemyInfo enemy = availableEnemies[randNum];
-            EnemyStats enemyStats = enemy.stats;
-
-            GameObject enemyInst = Instantiate(enemy.gameObject, child.transform.position, Quaternion.identity, enemyParent);
+            int randNum = Random.Range(0, availableEnemies.Count);
+            GameObject enemyInst = Instantiate(availableEnemies[randNum], child.transform.position, Quaternion.identity, enemyParent);
             enemyInst.transform.localScale /= transform.root.localScale.x;
         }
     }

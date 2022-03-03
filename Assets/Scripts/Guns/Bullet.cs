@@ -18,9 +18,9 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
-        damage = GlobalVar.playerStats.damage;
-        speed = GlobalVar.playerStats.bulletSpeed;
-        range = GlobalVar.playerStats.bulletRange;
+        damage = GlobalVar.player.playerStats.damage;
+        speed = GlobalVar.player.playerStats.bulletSpeed;
+        range = GlobalVar.player.playerStats.bulletRange;
         startPos = transform.position;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         if (col.gameObject.layer == 8 || col.gameObject.layer == 9)
         {
-            col.GetComponent<EnemyStats>().getHit();
+            col.GetComponent<EnemyStats>().GetHit();
         }
     }
 }

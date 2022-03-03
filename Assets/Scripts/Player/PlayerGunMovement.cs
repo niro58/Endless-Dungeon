@@ -11,7 +11,7 @@ public class PlayerGunMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gunParent = GlobalVar.playerStats.gunParent;
+        gunParent = GlobalVar.player.gunParent;
         gunScale = gunParent.transform.localScale;
         startPos = gunParent.transform.localPosition;
     }

@@ -9,9 +9,9 @@ public class GunModDisplay : MonoBehaviour
     private Vector3 startPos;
 
     [HideInInspector]
-    public float damage;
+    public float damageRed;
     [HideInInspector]
-    public float fireRate;
+    public float fireRateRed;
     [HideInInspector]
     public float bulletSpeed;
     [HideInInspector]
@@ -48,8 +48,8 @@ public class GunModDisplay : MonoBehaviour
         }
         transform.GetComponent<SpriteRenderer>().sprite = gunMod.sprite;
 
-        damage = gunMod.damage;
-        fireRate = gunMod.fireRate;
+        damageRed = gunMod.damageRed;
+        fireRateRed = gunMod.fireRateRed;
         bulletSpeed = gunMod.bulletSpeed;
         bulletRange = gunMod.bulletRange;
         accuracy = gunMod.accuracy;

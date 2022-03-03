@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 
 
     [Header("Stats")]
-    public float damage;
+    public float damageRed;
     public float fireRate;
     public float bulletSpeed;
     public float bulletRange;
@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour
 
     [HideInInspector]
     public Sprite sprite;
-    private PlayerStats playerStats;
+    private Player playerStats;
     [HideInInspector]
     public Transform modsParent;
     private GameObject firePoint;
@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
         transform.name = gunName.ToString();
         sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         modsParent = gameObject.transform.Find("Mods");
-        playerStats = GlobalVar.playerStats;
+        playerStats = GlobalVar.player;
         firePoint = transform.Find("FirePoint").gameObject;
         
     }
@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
         gameObject.SetActive(isActive);
         if(Input.GetKey(KeyCode.Mouse0) && Time.time >= shootCooldown)
         {
-            shootCooldown = Time.time + playerStats.fireRate;
+            shootCooldown = Time.time + playerStats.playerStats.fireRate;
             Shoot(fireMode);
         }
 
@@ -76,7 +76,7 @@ public class Gun : MonoBehaviour
     {
         pos = firePoint.transform.position;
         pos.z = 0.2f;
-        float randRange = Random.Range(-playerStats.accuracy, playerStats.accuracy);
+        float randRange = Random.Range(-playerStats.playerStats.accuracy, playerStats.playerStats.accuracy);
         float rotationZ = transform.parent.localEulerAngles.z + randRange;
         rotation = Quaternion.Euler(new Vector3(0, 0, rotationZ));
     }
