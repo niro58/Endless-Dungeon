@@ -20,15 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -5389598933609669048, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
-    - time: 0.1
-      value: {fileID: 9092964596097962569, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
-    - time: 0.2
       value: {fileID: 5791693866005532029, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
-    - time: 0.5
+    - time: 0.45
       value: {fileID: -6866322168044695888, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
+    - time: 0.53333336
+      value: {fileID: -5389598933609669048, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
     attribute: m_Sprite
-    path: 
+    path: Enemy_04_Turret
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -39,23 +37,22 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2216654363
       attribute: 0
       script: {fileID: 0}
       typeID: 212
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -5389598933609669048, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
-    - {fileID: 9092964596097962569, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
     - {fileID: 5791693866005532029, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
     - {fileID: -6866322168044695888, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
+    - {fileID: -5389598933609669048, guid: 46e6f3bef3593814f84a38c53b446021, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.51666665
+    m_StopTime: 0.55
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

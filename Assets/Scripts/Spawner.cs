@@ -10,10 +10,12 @@ public class Spawner : MonoBehaviour
     private List<GameObject> availableEnemies = new List<GameObject>();
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        //tartCoroutine(SpawnEnemies());
     }
+    /*
     IEnumerator SpawnEnemies()
     {
+        
         foreach (Transform child in transform)
         {
             GlobalVar.enemiesLeft += 1;
@@ -49,5 +51,6 @@ public class Spawner : MonoBehaviour
             GameObject enemyInst = Instantiate(availableEnemies[randNum], child.transform.position, Quaternion.identity, enemyParent);
             enemyInst.transform.localScale /= transform.root.localScale.x;
         }
-    }
+        
+    }*/
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy04Script : MonoBehaviour
 {
+    private Animator anim;
     public EnemyGrid roomGrid;
     public Dictionary<Vector2Int, string> roomMapFreeCells;
     
@@ -19,6 +20,7 @@ public class Enemy04Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
         stats = gameObject.GetComponent<EnemyStats>();
         target = GlobalVar.player.player;
         targetRb = target.GetComponent<Rigidbody2D>();
@@ -59,6 +61,7 @@ public class Enemy04Script : MonoBehaviour
     {
         if (Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("Obstacle")) == false)
         {
+            gameObject.GetComponent<Animator>().Play("Enemy_04_Shoot");
             GameObject createdBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             EnemyBulletPredictive bulletScript = createdBullet.GetComponent<EnemyBulletPredictive>();
             bulletScript.distance = stats.bulletRange;
@@ -72,14 +75,6 @@ public class Enemy04Script : MonoBehaviour
             }
             bulletScript.damage = stats.damage;
             bulletScript.bulletSpeed = stats.bulletSpeed;
-            /*if (MyMath.calculateDirection(target.transform.position, transform.position, targetRb.velocity, stats.bulletSpeed, out var direction))
-            {
-                createdBullet.GetComponent<Rigidbody2D>().velocity = direction * stats.bulletSpeed;
-            }
-            else
-            {
-                createdBullet.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * stats.bulletSpeed;
-            }*/
         }
     }
 }

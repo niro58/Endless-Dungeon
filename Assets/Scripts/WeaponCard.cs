@@ -27,6 +27,7 @@ public class WeaponCard : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         availableItems.guns.Remove(selectedWeapon);
+        Time.timeScale = 1;
         if (availableItems.guns.Count == 0)
         {
             gameObject.GetComponent<ModCard>().enabled = true;
@@ -61,6 +62,7 @@ public class WeaponCard : MonoBehaviour, IPointerClickHandler
                     itemName = value;
                     break;
                 case "bulletObj":
+                case "isActive":
                     break;
                 default:
                     if(value != "null")

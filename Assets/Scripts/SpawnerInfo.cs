@@ -8,7 +8,7 @@ public class SpawnerInfo : MonoBehaviour
     public List<GameObject> availableEnemies = new List<GameObject>();
     public void Start()
     {
-        GlobalVar.availableEnemies = availableEnemies;
+        //GlobalVar.availableEnemies = availableEnemies;
     }
 
 }

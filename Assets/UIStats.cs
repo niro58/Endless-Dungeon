@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 public class UIStats : MonoBehaviour
 {
     PlayerStats playerStats;
     TextMeshProUGUI textUGUI;
+
     // Start is called before the first frame update
     void Start()
     {
         playerStats = GlobalVar.player.playerStats;
         textUGUI = gameObject.GetComponent<TextMeshProUGUI>();
         UpdateStats();
-        InvokeRepeating("UpdateStats", 2.0f, 4);
+        InvokeRepeating("UpdateStats", 2.0f, 1);
     }
     void UpdateStats()
     {
         switch (name)
         {
             case "Health_Value":
-                textUGUI.text = playerStats.health.ToString();
+                textUGUI.text = GlobalVar.player.health.ToString();
                 break;
             case "Speed_Value":
                 textUGUI.text = playerStats.speed.ToString();
@@ -41,6 +43,15 @@ public class UIStats : MonoBehaviour
                 break;
             case "Coin_Value":
                 textUGUI.text = playerStats.coins.ToString();
+                break;
+            case "Level_Value":
+                textUGUI.text = GlobalVar.currentLevel.ToString();
+                break;
+            case "Test_Value":
+                textUGUI.text = "Damage Increase : " + playerStats.damageInc.ToString() + Environment.NewLine;
+                textUGUI.text += "Fire Rate Reduction : " + playerStats.fireRateRed.ToString() + Environment.NewLine;
+                textUGUI.text += "Accuracy Reduction : " + playerStats.accuracyRed.ToString() + Environment.NewLine;
+                textUGUI.text += "Current Level : " + GlobalVar.currentLevel.ToString() + Environment.NewLine;
                 break;
         }
     }

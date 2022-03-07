@@ -12,9 +12,9 @@ public class PlayerStats
     public float bulletSpeed;
     public float bulletRange;
 
-    public float damageIncrease;
-    public float fireRateIncrease;
-    public float accuracyReduction;
+    public float damageInc;
+    public float fireRateRed;
+    public float accuracyRed;
 
     public int coins;
 
@@ -23,15 +23,28 @@ public class PlayerStats
     {
         LoadData();
     }
-    public string ToJson()
+    public string ToJson(object obj)
     {
-        return JsonUtility.ToJson(this);
+        return JsonUtility.ToJson(obj);
     }
-    public void SaveData()
+    public void SaveData(string data = "")
     {
-        if(GlobalFunctions.SaveData(ToJson(), fileName))
+        if (data == "")
         {
-            Debug.Log("Save Succesfull");
+            data = ToJson(this);
+        }
+        if(GlobalFunctions.SaveData(data, fileName))
+        {
+            //Debug.Log("Save Succesfull");
+        }
+    }
+    public void AddCoin()
+    {
+        if (GlobalFunctions.LoadData(fileName, out string output))
+        {
+            PlayerStats stats = JsonUtility.FromJson<PlayerStats>(output);
+            stats.coins += 1;
+            SaveData(ToJson(stats));
         }
     }
     public void LoadData()

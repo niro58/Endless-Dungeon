@@ -74,18 +74,34 @@ public static class GlobalFunctions
     {
         return (UnityEngine.Random.Range(0f, 1f) > 0.5f);
     }
-    public static void MakeTransition(string action)
+    public static IEnumerator MakeTransition(string action, string animationName, int value = -1)
     {
         GameObject prefab = GlobalVar.importantPrefabs["Transition"];
         Animator anim = prefab.GetComponent<Animator>();
-
-        prefab.GetComponent<Animator>().Play("Transition Increase");
-
+        anim.Play(animationName);
+        GlobalVar.canMove = false;
+        anim.SetBool("EndTransition", false);
+        if (action == "SceneEnter")
+        {
+            anim.Play(animationName);
+            anim.SetBool("EndTransition", true);
+        }
+        if(action == "CardPick")
+        {
+            Time.timeScale = 0;
+            GlobalVar.importantPrefabs["Cards"].SetActive(true);
+        }
+        yield return new WaitForSeconds(2);
+        GlobalVar.canMove = true;
         switch (action)
         {
             case "Death":
+                GlobalVar.importantPrefabs["DeathMenu"].SetActive(true);
+                anim.Play("Transition_Shrink");
                 break;
-            case "MainMenu":
+            case "SceneChange":
+                SceneManager.LoadScene(value);
+                anim.SetBool("EndTransition", true);
                 break;
         }
     }
@@ -100,13 +116,12 @@ public static class GlobalFunctions
             {
                 case "Scripts":
                 case "Transition":
+                case "UIGuns":
                     break;
                 default:
                     prefab.SetActive(false);
                     break;
             }
         }
-        MakeTransition("Death");
-
     }
 }

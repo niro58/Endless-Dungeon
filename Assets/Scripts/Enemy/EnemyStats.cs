@@ -19,7 +19,6 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Collision Stats")]
     public float onCollisionDamage = 1;
-    public float onCollisionKnockback = 1;
 
     [Header("Level Multiplier")]
     public float healthMultiplier;
@@ -29,13 +28,16 @@ public class EnemyStats : MonoBehaviour
     public float bulletSpeedMultiplier;
     public float bulletRangeMultiplier;
     public float onCollisionDamageMultiplier;
+    [Header("Max Values")]
+    public float maxSpeed;
+    public float maxFirerate;
     private void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
 
         float level = GlobalVar.currentLevel;
         
-        int mobType = Random.Range(0, 3);
+        int mobType = Random.Range(0, 4);
         Color32 color = new Color32();
         switch (mobType)
         {
@@ -64,10 +66,18 @@ public class EnemyStats : MonoBehaviour
         bulletSpeed += bulletSpeedMultiplier * level;
         bulletRange += bulletRangeMultiplier * level;
         onCollisionDamage += onCollisionDamageMultiplier * level;
+
+        if(fireRate <= maxFirerate)
+        {
+            fireRate = maxFirerate;
+        }
+        if(speed >= maxSpeed || (maxSpeed < 1 && speed <= maxSpeed))
+        {
+            speed = maxSpeed;
+        }
     }
     public void GetHit()
     {
-
         health -= GlobalVar.player.playerStats.damage;
         if (health <= 0)
         {
@@ -76,7 +86,7 @@ public class EnemyStats : MonoBehaviour
             GlobalFunctions.SetAllBehaviour(gameObject, false);
             LeanTween.alpha(gameObject, 0, 2);
             Destroy(gameObject, 2);
-
+            GlobalVar.playerStats.AddCoin();
             GlobalVar.player.playerStats.coins += GlobalVar.currentLevel;
             GlobalVar.enemiesLeft -= 1;
             return;
@@ -86,5 +96,6 @@ public class EnemyStats : MonoBehaviour
             animator.Play("Enemy-Hit");
         }
     }
+
 
 }

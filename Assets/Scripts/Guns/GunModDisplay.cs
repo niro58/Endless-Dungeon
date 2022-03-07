@@ -9,7 +9,7 @@ public class GunModDisplay : MonoBehaviour
     private Vector3 startPos;
 
     [HideInInspector]
-    public float damageRed;
+    public float damageInc;
     [HideInInspector]
     public float fireRateRed;
     [HideInInspector]
@@ -17,7 +17,7 @@ public class GunModDisplay : MonoBehaviour
     [HideInInspector]
     public float bulletRange;
     [HideInInspector]
-    public float accuracy;
+    public float accuracyRed;
     void Start()
     {
         startPos = transform.localPosition;
@@ -29,6 +29,7 @@ public class GunModDisplay : MonoBehaviour
     
     public void updateMod()
     {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         Vector3 offset;
         Vector2 spriteSize = new Vector3((gunMod.sprite.rect.width / 100 / 2) * transform.localScale.x, (gunMod.sprite.rect.height / 100 / 2) * transform.localScale.y);
         switch (gunMod.modPart) // Mod movement based on what type it is
@@ -47,11 +48,14 @@ public class GunModDisplay : MonoBehaviour
                 break;
         }
         transform.GetComponent<SpriteRenderer>().sprite = gunMod.sprite;
-
-        damageRed = gunMod.damageRed;
+        if(gunMod.fireMode.ToString() != "None")
+        {
+            transform.parent.parent.GetComponent<Gun>().fireMode = gunMod.fireMode;
+        }
+        damageInc = gunMod.damageInc;
         fireRateRed = gunMod.fireRateRed;
         bulletSpeed = gunMod.bulletSpeed;
         bulletRange = gunMod.bulletRange;
-        accuracy = gunMod.accuracy;
+        accuracyRed = gunMod.accuracyRed;
     }
 }

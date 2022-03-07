@@ -21,6 +21,7 @@ public class EnemyBulletPredictive : MonoBehaviour
     public void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, targetPos, bulletSpeed * Time.deltaTime);
+        transform.position += new Vector3(0, 0, -1);
         if (Vector2.Distance(startPos, transform.position) >= distance)
         {
             distance = Mathf.Infinity;
@@ -37,7 +38,7 @@ public class EnemyBulletPredictive : MonoBehaviour
         Destroy(gameObject);
         if (col.transform.tag == "Player")
         {
-            GlobalVar.player.playerStats.health -= damage;
+            GlobalVar.player.GetHit(damage);
         }
     }
 }

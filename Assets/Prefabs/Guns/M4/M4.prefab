@@ -30,6 +30,55 @@ Transform:
   m_Father: {fileID: 1391549723639941857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1458579684461277755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2583536861517138101}
+  - component: {fileID: 9167073567916727861}
+  m_Layer: 0
+  m_Name: Buff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2583536861517138101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458579684461277755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6015259750493836255}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9167073567916727861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458579684461277755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5906a88a96767194ca4c64ec04b75b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunBuffs: []
+  damageInc: 0
+  fireRateRed: 0
+  bulletSpeed: 0
+  bulletRange: 0
+  accuracyRed: 0
 --- !u!1 &2435799960422213056
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,11 +175,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
-  accuracy: 0
+  accuracyRed: 0
 --- !u!1 &4322504610531227717
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,11 +276,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
-  accuracy: 0
+  accuracyRed: 0
 --- !u!1 &5911291022863832690
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +311,7 @@ Transform:
   - {fileID: 5397752853403956779}
   - {fileID: 8452174302899871611}
   - {fileID: 1273433448862041612}
+  - {fileID: 2583536861517138101}
   m_Father: {fileID: 1391549723639941857}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,11 +411,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
-  accuracy: 0
+  accuracyRed: 0
 --- !u!1 &7621239589538742503
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +518,7 @@ MonoBehaviour:
   fireMode: 1
   bulletType: 0
   bulletObj: {fileID: 3010013307368176278, guid: 3b2237d664db87e469e6cdc9a0b65cf0, type: 3}
-  damage: 1
+  damageRed: 0
   fireRate: 0.45
   bulletSpeed: 1
   bulletRange: 1

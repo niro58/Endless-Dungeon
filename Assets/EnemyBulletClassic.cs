@@ -34,7 +34,7 @@ public class EnemyBulletClassic : MonoBehaviour
         Destroy(gameObject);
         if (col.transform.tag == "Player")
         {
-            GlobalVar.player.playerStats.health -= damage;
+            GlobalVar.player.GetHit(damage);
         }
     }
 }

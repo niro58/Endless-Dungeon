@@ -9,9 +9,10 @@ public class ShopItem : MonoBehaviour
 {
     private PlayerStats playerStats;
     private FieldInfo chosenAttributeField;
-    public enum Attribute {health,speed,damage,bulletSpeed,bulletRange,damageIncrease,fireRateIncrease,accuracyReduction};
+    public enum Attribute {health,speed,damage,bulletSpeed,bulletRange,damageInc,fireRateRed,accuracyRed};
     public Attribute attribute;
 
+    public float startValue;
     private float attributeValue;
     public float attributeIncreaseOnUpgrade;
     public int priceIncreaseOnUpgrade;
@@ -30,7 +31,7 @@ public class ShopItem : MonoBehaviour
         Type playerStatsType = typeof(PlayerStats);
         chosenAttributeField = playerStatsType.GetField(attribute.ToString());
         attributeValue = (float)chosenAttributeField.GetValue(playerStats);
-        currentPrice = priceIncreaseOnUpgrade * (int)Mathf.Ceil(attributeValue / attributeIncreaseOnUpgrade);
+        currentPrice = priceIncreaseOnUpgrade + priceIncreaseOnUpgrade * (int)Mathf.Ceil((attributeValue - startValue) / attributeIncreaseOnUpgrade);
 
         uiAttributeValue = transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         uiUpgradePrice = transform.GetChild(2).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
@@ -41,10 +42,11 @@ public class ShopItem : MonoBehaviour
     public void UpgradeAttribute()
     {
         attributeValue += attributeIncreaseOnUpgrade;
+        attributeValue = Mathf.Round(attributeValue * 100f) / 100f;
         playerStats.coins -= currentPrice;
         currentPrice += priceIncreaseOnUpgrade;
         chosenAttributeField.SetValue(playerStats, attributeValue);
-        //playerStats.SaveData();
+        playerStats.SaveData();
 
         UpdateItemText();
     }
@@ -53,17 +55,22 @@ public class ShopItem : MonoBehaviour
         uiAttributeValue.text = attributeValue.ToString();
         switch (attribute)
         {
-            case Attribute.damageIncrease:
-            case Attribute.fireRateIncrease:
-            case Attribute.accuracyReduction:
+            case Attribute.damageInc:
+            case Attribute.fireRateRed:
+            case Attribute.accuracyRed:
                 uiAttributeValue.text += "%";
                 break;
         }
         uiUpgradePrice.text = currentPrice.ToString();
-        if (playerStats.coins < currentPrice)
+        
+        foreach(Transform item in transform.parent)
         {
-            uiAttributeUpgradeButton.interactable = false;
+            Button button = item.GetChild(2).gameObject.GetComponent<Button>();
+            if (playerStats.coins < item.GetComponent<ShopItem>().currentPrice && attributeValue <= maxValue)
+            {
+                button.interactable = false;
+            }
         }
-        transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Coins : " + playerStats.coins.ToString();
+        transform.parent.parent.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Coins : " + playerStats.coins.ToString();
     }
 }

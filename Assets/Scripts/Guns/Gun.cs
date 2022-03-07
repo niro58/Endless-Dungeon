@@ -17,7 +17,8 @@ public class Gun : MonoBehaviour
 
 
     [Header("Stats")]
-    public float damageRed;
+    public float damage;
+    public float damageInc;
     public float fireRate;
     public float bulletSpeed;
     public float bulletRange;
@@ -45,7 +46,12 @@ public class Gun : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse0) && Time.time >= shootCooldown)
         {
             shootCooldown = Time.time + playerStats.playerStats.fireRate;
+            GlobalVar.canSwap = false;
             Shoot(fireMode);
+        }
+        else
+        {
+            GlobalVar.canSwap = true;
         }
 
     }
@@ -65,14 +71,14 @@ public class Gun : MonoBehaviour
     {
         for(int i = 0; i < number; i++)
         {
-            getShootingData(out Vector3 pos, out Quaternion rotation);
+            GetShootingData(out Vector3 pos, out Quaternion rotation);
             GameObject bullet = Instantiate(bulletObj, pos, rotation);
 
             yield return new WaitForSeconds(delay);
         }
 
     }
-    public void getShootingData(out Vector3 pos, out Quaternion rotation)
+    public void GetShootingData(out Vector3 pos, out Quaternion rotation)
     {
         pos = firePoint.transform.position;
         pos.z = 0.2f;

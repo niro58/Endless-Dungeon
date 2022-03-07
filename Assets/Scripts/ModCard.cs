@@ -14,13 +14,13 @@ public class ModCard : MonoBehaviour, IPointerClickHandler
     {
         parent = gameObject.transform.parent.gameObject;
         availableItems = GlobalVar.importantPrefabs["Scripts"].GetComponent<AvailableItems>();
-        generateCard();
+        GenerateCard();
     }
     private void OnEnable()
     {
         if(availableItems != null)
         {
-            generateCard();
+            GenerateCard();
         }
     }
     public void OnPointerClick(PointerEventData pointerEventData)
@@ -28,18 +28,26 @@ public class ModCard : MonoBehaviour, IPointerClickHandler
         if (selectedMod.modPart != GunMod.ModPart.Buff)
         {
             availableItems.mods.Remove(selectedMod);
+            GlobalVar.player.AddMod(selectedMod);
         }
-
-
+        else
+        {
+            GlobalVar.player.AddBuff(selectedMod);
+        }
         parent.gameObject.SetActive(false);
-        GlobalVar.player.AddMod(selectedMod);
     }
-    private void generateCard()
+    private void GenerateCard()
     {
-        selectedMod = availableItems.mods[Random.Range(0, availableItems.guns.Count)];
-        fillCard(selectedMod);
+        selectedMod = availableItems.mods[Random.Range(0, availableItems.mods.Count)];
+
+        
+        if(selectedMod.modPart.ToString() == "Buff")
+        {
+            selectedMod.gun = (Gun.GunName)Random.Range(0, System.Enum.GetValues(typeof(Gun.GunName)).Length);
+        }
+        FillCard(selectedMod);
     }
-    private void fillCard(GunMod gunMod)
+    private void FillCard(GunMod gunMod)
     {
         Sprite sprite = gunMod.sprite;
         string itemName = null;
@@ -49,7 +57,11 @@ public class ModCard : MonoBehaviour, IPointerClickHandler
         foreach (FieldInfo field in gunMod.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
         {
             string name = GlobalFunctions.SplitByCapitalLetters(field.Name).ToLower();
-            string value = GlobalFunctions.SplitByCapitalLetters(field.GetValue(gunMod).ToString());
+            string value = field.GetValue(gunMod).ToString();
+            if(float.TryParse(value, out float num) && num == 0)
+            {
+                continue;
+            }
             switch (field.Name)
             {
                 case "shortName":

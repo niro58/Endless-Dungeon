@@ -17,8 +17,8 @@ MonoBehaviour:
   sprite: {fileID: -3198102797266211206, guid: aef630b70c67ea14f8d127b7c3c44e55, type: 3}
   modPart: 0
   fireMode: 2
-  damage: 0
-  fireRateReduction: 10
+  damageInc: 15
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0.3
-  accuracy: -5
+  accuracyRed: 0

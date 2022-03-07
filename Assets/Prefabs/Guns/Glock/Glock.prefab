@@ -126,10 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
+  accuracyRed: 0
 --- !u!1 &3290388500586821503
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   fireMode: 1
   bulletType: 0
   bulletObj: {fileID: 3010013307368176278, guid: 3b2237d664db87e469e6cdc9a0b65cf0, type: 3}
-  damage: 0
+  damageRed: 0
   fireRate: 0
   bulletSpeed: 0
   bulletRange: 0
@@ -269,6 +270,7 @@ Transform:
   - {fileID: 9027723231610148429}
   - {fileID: 4843648782839014823}
   - {fileID: 3408871752651400426}
+  - {fileID: 1451690345393119051}
   m_Father: {fileID: 2469830076818051108}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -368,10 +370,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
+  accuracyRed: 0
+--- !u!1 &8425346697535478423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451690345393119051}
+  - component: {fileID: 5308029821843542694}
+  m_Layer: 0
+  m_Name: Buff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451690345393119051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425346697535478423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6979480929132888550}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5308029821843542694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425346697535478423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5906a88a96767194ca4c64ec04b75b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunBuffs: []
+  damageInc: 0
+  fireRateRed: 0
+  bulletSpeed: 0
+  bulletRange: 0
+  accuracyRed: 0
 --- !u!1 &8560714602677453719
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMod: {fileID: 0}
-  damage: 0
-  fireRateReduction: 0
+  damageInc: 0
+  fireRateRed: 0
   bulletSpeed: 0
   bulletRange: 0
+  accuracyRed: 0

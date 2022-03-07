@@ -16,13 +16,21 @@ public class RoomGenerationCall : MonoBehaviour
 
     IEnumerator MoveToNextRoom(Vector2Int dir, Collision2D hit)
     {
-        if (GameObject.FindGameObjectsWithTag("Scripts")[0].GetComponent<RoomGeneration>().GenerateNextRoom(dir, hit.transform.parent.parent.position))
+        StartCoroutine(GlobalFunctions.MakeTransition("CardPick", ""));
+        yield return new WaitForSeconds(0.2f);
+        if (GlobalVar.currentLevel % 5 == 0 && GlobalVar.currentLevel != 0)
+        {
+            Debug.Log(GlobalVar.currentLevel);
+            //StartCoroutine(GlobalFunctions.MakeTransition("CardPick", "Transition_Increase"));
+            yield return new WaitForSeconds(0.2f);
+        }
+        if (GlobalVar.importantPrefabs["Scripts"].GetComponent<RoomGeneration>().GenerateNextRoom(dir, hit.transform.parent.parent.position))
         {
             GlobalVar.canMove = false;
             yield return new WaitForSeconds(0.3f);
             GlobalVar.canMove = true;
         }
-
+        
         transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, transform.position.z);
         Vector3 movePos = Vector2.Scale(dir, new Vector2(0.7f, 0.7f));
         transform.position += movePos;
@@ -34,8 +42,7 @@ public class RoomGenerationCall : MonoBehaviour
         if (rayHit)
         {
             GlobalVar.currentRoom = rayHit.transform.parent.parent.parent.parent.gameObject;
-
-
+            GlobalVar.enemiesLeft = GlobalVar.currentRoom.transform.GetChild(0).GetChild(0).Find("Enemies").childCount;
             Transform currRoom = GlobalVar.currentRoom.transform.Find("Room_Parts");
             foreach (Transform roomPart in currRoom)
             {
@@ -45,10 +52,6 @@ public class RoomGenerationCall : MonoBehaviour
                     door.Find("Door_Light").gameObject.SetActive(false);
                 }
             }
-        }
-        if (GlobalVar.currentLevel % 5 == 0)
-        {
-            GlobalVar.importantPrefabs["CardsParent"].SetActive(true);
         }
     }
 }
