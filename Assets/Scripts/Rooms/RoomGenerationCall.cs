@@ -7,26 +7,29 @@ public class RoomGenerationCall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hit)
     {
         // On collision with door it moves the player forward to next room
-        if (hit.collider.gameObject.tag == "Door" && GlobalVar.enemiesLeft == 0)
+        Debug.LogError("your momma");
+        if (hit.collider.gameObject.tag == "Door" && GlobalVar.enemiesLeft <= 0)
         {
+            Debug.LogError("your momma2");
             Vector2Int newRoomDirection = hit.gameObject.GetComponent<Door>().doorDirectionVector;
             StartCoroutine(MoveToNextRoom(newRoomDirection, hit));
+        }
+        else
+        {
+            Debug.LogError("your momma3 : " + GlobalVar.enemiesLeft);
         }
     }
 
     IEnumerator MoveToNextRoom(Vector2Int dir, Collision2D hit)
     {
-        StartCoroutine(GlobalFunctions.MakeTransition("CardPick", ""));
-        yield return new WaitForSeconds(0.2f);
-        if (GlobalVar.currentLevel % 5 == 0 && GlobalVar.currentLevel != 0)
-        {
-            Debug.Log(GlobalVar.currentLevel);
-            //StartCoroutine(GlobalFunctions.MakeTransition("CardPick", "Transition_Increase"));
-            yield return new WaitForSeconds(0.2f);
-        }
         if (GlobalVar.importantPrefabs["Scripts"].GetComponent<RoomGeneration>().GenerateNextRoom(dir, hit.transform.parent.parent.position))
         {
             GlobalVar.canMove = false;
+            if (GlobalVar.currentLevel % 2 == 0 && GlobalVar.currentLevel != 0)
+            {
+                StartCoroutine(GlobalFunctions.MakeTransition("CardPick", ""));
+                yield return new WaitForSeconds(0.2f);
+            }
             yield return new WaitForSeconds(0.3f);
             GlobalVar.canMove = true;
         }

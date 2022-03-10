@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public GameObject player;
     public void Awake()
     {
+        GlobalVar.playerGunCount = 1;
         GlobalVar.enemiesLeft = 0;
         GlobalVar.currentLevel = 0;
 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GlobalVar.importantPrefabs["Transition"].GetComponent<Animator>().Play("Empty");    
             GlobalVar.importantPrefabs["Pause"].SetActive(!GlobalVar.importantPrefabs["Pause"].activeSelf);
         }
     }
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
     public void GetHit(float damage)
     {
         health -= damage;
+        health = GlobalFunctions.RoundByTwoDecimals(health);
         if (health <= 0)
         {
             StartCoroutine(GlobalFunctions.MakeTransition("Death", "Transition_Increase"));
@@ -60,6 +63,7 @@ public class Player : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(6, 8, true);
         Physics2D.IgnoreLayerCollision(6, 9, true);
+        Physics2D.IgnoreLayerCollision(6, 13, true);
 
         LeanTween.alpha(gameObject, 0.3f, time / 2);
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(6, 8, false);
         Physics2D.IgnoreLayerCollision(6, 9, false);
+        Physics2D.IgnoreLayerCollision(6, 13, false);
 
     }
     public void AddMod(GunMod gunMod)
@@ -142,5 +147,16 @@ public class Player : MonoBehaviour
                 playerStats.accuracyRed += modScript.accuracyRed;
             }
         }
+        playerStats.damage = playerStats.damage *  (1 + (playerStats.damageInc / 100));
+        playerStats.fireRate = playerStats.fireRate / (1 + (playerStats.fireRateRed / 100));
+        playerStats.accuracyRed = playerStats.accuracy / (1 + (playerStats.accuracyRed / 100));
+
+        playerStats.damage = GlobalFunctions.RoundByTwoDecimals(playerStats.damage);
+        playerStats.damageInc = GlobalFunctions.RoundByTwoDecimals(playerStats.damageInc);
+        playerStats.fireRate = GlobalFunctions.RoundByTwoDecimals(playerStats.fireRate);
+        playerStats.bulletSpeed = GlobalFunctions.RoundByTwoDecimals(playerStats.bulletSpeed);
+        playerStats.bulletRange = GlobalFunctions.RoundByTwoDecimals(playerStats.bulletRange);
+        playerStats.accuracy = GlobalFunctions.RoundByTwoDecimals(playerStats.accuracy);
     }
+   
 }

@@ -88,22 +88,27 @@ public static class GlobalFunctions
         }
         if(action == "CardPick")
         {
-            Time.timeScale = 0;
             GlobalVar.importantPrefabs["Cards"].SetActive(true);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         GlobalVar.canMove = true;
         switch (action)
         {
             case "Death":
-                GlobalVar.importantPrefabs["DeathMenu"].SetActive(true);
                 anim.Play("Transition_Shrink");
+                GlobalVar.importantPrefabs["DeathMenu"].SetActive(true);
+                yield return new WaitForSeconds(1.3f);
+                Time.timeScale = 0;
                 break;
             case "SceneChange":
                 SceneManager.LoadScene(value);
                 anim.SetBool("EndTransition", true);
                 break;
         }
+    }
+    public static float RoundByTwoDecimals(float input)
+    {
+        return Mathf.Round(input * 100f) / 100f;
     }
     public static void UpdateImportantGameObjects()
     {

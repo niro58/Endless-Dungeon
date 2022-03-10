@@ -133,7 +133,7 @@ MonoBehaviour:
   bulletSpeed: 1
   bulletRange: 1
   onCollisionDamage: 1
-  healthMultiplier: 0.5
+  healthMultiplier: 2
   speedMultiplier: 0.25
   damageMultiplier: 0.4
   fireRateMultiplier: -0.01

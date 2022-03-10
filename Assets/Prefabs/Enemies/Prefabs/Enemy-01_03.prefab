@@ -107,7 +107,7 @@ MonoBehaviour:
   bulletSpeed: 0
   bulletRange: 0
   onCollisionDamage: 1
-  healthMultiplier: 0.5
+  healthMultiplier: 1.5
   speedMultiplier: 0.05
   damageMultiplier: 0.2
   fireRateMultiplier: 0

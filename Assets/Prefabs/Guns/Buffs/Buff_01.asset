@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shortName: Gun Buff
   gun: 0
-  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: -222276495038315955, guid: 029157f08bbcd47468602a94e121a3c9, type: 3}
   modPart: 3
   fireMode: 0
   damageInc: 5

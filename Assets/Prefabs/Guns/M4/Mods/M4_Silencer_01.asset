@@ -16,7 +16,7 @@ MonoBehaviour:
   gun: 0
   sprite: {fileID: -51580551502718289, guid: 8b832b40dbd929a4f9b141da67f7a757, type: 3}
   modPart: 0
-  fireMode: 2
+  fireMode: 3
   damageInc: 15
   fireRateRed: 0
   bulletSpeed: 0

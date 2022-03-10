@@ -518,10 +518,11 @@ MonoBehaviour:
   fireMode: 1
   bulletType: 0
   bulletObj: {fileID: 3010013307368176278, guid: 3b2237d664db87e469e6cdc9a0b65cf0, type: 3}
-  damageRed: 0
-  fireRate: 0.45
+  damage: 1
+  damageInc: 20
+  fireRate: 0.3
   bulletSpeed: 1
   bulletRange: 1
-  accuracy: 20
+  accuracy: 10
   sprite: {fileID: 0}
   modsParent: {fileID: 0}
