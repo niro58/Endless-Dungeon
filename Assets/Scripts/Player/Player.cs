@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GlobalVar.importantPrefabs["DeathMenu"].activeSelf && !GlobalVar.importantPrefabs["Cards"].activeSelf)
         {
             GlobalVar.importantPrefabs["Transition"].GetComponent<Animator>().Play("Empty");    
             GlobalVar.importantPrefabs["Pause"].SetActive(!GlobalVar.importantPrefabs["Pause"].activeSelf);

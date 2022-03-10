@@ -28,10 +28,7 @@ public class EnemyBulletPredictive : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity /= 25;
             LeanTween.alpha(gameObject, 0, 2);
         }
-        if(spriteRenderer.color.a == 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, 4);
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

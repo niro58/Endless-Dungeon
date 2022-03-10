@@ -48,10 +48,13 @@ public class UIStats : MonoBehaviour
                 textUGUI.text = GlobalVar.currentLevel.ToString();
                 break;
             case "Test_Value":
-                textUGUI.text = "Damage Increase : " + playerStats.damageInc.ToString() + Environment.NewLine;
-                textUGUI.text += "Fire Rate Reduction : " + playerStats.fireRateRed.ToString() + Environment.NewLine;
-                textUGUI.text += "Accuracy Reduction : " + playerStats.accuracyRed.ToString() + Environment.NewLine;
+                textUGUI.text = "Damage Increase : " + GlobalFunctions.RoundByTwoDecimals(playerStats.damageInc).ToString() + Environment.NewLine;
+                textUGUI.text += "Fire Rate Reduction : " + GlobalFunctions.RoundByTwoDecimals(playerStats.fireRateRed).ToString() + Environment.NewLine;
+                textUGUI.text += "Accuracy Reduction : " + GlobalFunctions.RoundByTwoDecimals(playerStats.accuracyRed).ToString() + Environment.NewLine;
                 textUGUI.text += "Current Level : " + GlobalVar.currentLevel.ToString() + Environment.NewLine;
+                break;
+            case "FPSManager":
+                textUGUI.text = GlobalFunctions.RoundByTwoDecimals(1 / Time.unscaledDeltaTime).ToString();
                 break;
         }
     }

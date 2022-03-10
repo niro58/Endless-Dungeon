@@ -105,14 +105,14 @@ MonoBehaviour:
   fireRate: 0
   bulletSpeed: 0
   bulletRange: 0
-  onCollisionDamage: 1
+  onCollisionDamage: 2
   healthMultiplier: 1.4
   speedMultiplier: -0.2
   damageMultiplier: 0
   fireRateMultiplier: 0
   bulletSpeedMultiplier: 0
   bulletRangeMultiplier: 0
-  onCollisionDamageMultiplier: 0.55
+  onCollisionDamageMultiplier: 1
   maxSpeed: 0.3
   maxFirerate: 0
 --- !u!114 &3690331021918114506

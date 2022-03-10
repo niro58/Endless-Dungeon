@@ -30,7 +30,7 @@ public class RoomGeneration : MonoBehaviour
         {
             return false;
         }
-        else
+        else // If cell is not filled, create a room
         {
             GlobalVar.currentLevel += 1;
             List<GameObject> listOfRooms = new List<GameObject>();
@@ -83,7 +83,7 @@ public class RoomGeneration : MonoBehaviour
                     {
                         grid.FillCell(grid.WorldToCell(cell.transform.position));
                     }
-                    if (roomsParent.transform.childCount > 16)// if Rooms parent has more than 16 childs
+                    if (roomsParent.transform.childCount > 6)// if Rooms parent has more than 6 childs
                     {
                         foreach (Transform cell in roomsParent.transform.GetChild(0).GetChild(0).transform)// Foreach the earliest created room and delete cells from grid
                         {

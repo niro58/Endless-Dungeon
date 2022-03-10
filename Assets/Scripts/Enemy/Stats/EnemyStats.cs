@@ -37,28 +37,6 @@ public class EnemyStats : MonoBehaviour
 
         float level = GlobalVar.currentLevel;
         
-        int mobType = Random.Range(0, 4);
-        Color32 color = new Color32();
-        switch (mobType)
-        {
-            case 0:
-                color = Color.green;
-                health += healthMultiplier * 0.2f * level;
-                break;
-            case 1:
-                color = Color.blue;
-                speed += speedMultiplier * 0.2f * level;
-                break;
-            case 2:
-                color = Color.red;
-                damage += damageMultiplier * 0.2f * level;
-                break;
-            case 3:
-                color = Color.yellow;
-                fireRate += fireRateMultiplier * 0.2f * level;
-                break;
-        }
-        gameObject.GetComponent<SpriteRenderer>().color = color;
         health += healthMultiplier * level;
         speed += speedMultiplier * level;
         damage += damageMultiplier * level;
@@ -67,7 +45,29 @@ public class EnemyStats : MonoBehaviour
         bulletRange += bulletRangeMultiplier * level;
         onCollisionDamage += onCollisionDamageMultiplier * level;
 
-        if(fireRate <= maxFirerate)
+        int mobType = Random.Range(0, 4);
+        Color32 color = new Color32();
+        switch (mobType)
+        {
+            case 0:
+                color = Color.green;
+                health *= 1.2f;
+                break;
+            case 1:
+                color = Color.blue;
+                speed *= 1.2f;
+                break;
+            case 2:
+                color = Color.red;
+                damage *= 1.2f;
+                break;
+            case 3:
+                color = Color.yellow;
+                fireRate *= 1.2f;
+                break;
+        }
+        gameObject.GetComponent<SpriteRenderer>().color = color;
+        if (fireRate <= maxFirerate)
         {
             fireRate = maxFirerate;
         }

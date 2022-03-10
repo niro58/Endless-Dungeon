@@ -7,16 +7,10 @@ public class RoomGenerationCall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hit)
     {
         // On collision with door it moves the player forward to next room
-        Debug.LogError("your momma");
         if (hit.collider.gameObject.tag == "Door" && GlobalVar.enemiesLeft <= 0)
         {
-            Debug.LogError("your momma2");
             Vector2Int newRoomDirection = hit.gameObject.GetComponent<Door>().doorDirectionVector;
             StartCoroutine(MoveToNextRoom(newRoomDirection, hit));
-        }
-        else
-        {
-            Debug.LogError("your momma3 : " + GlobalVar.enemiesLeft);
         }
     }
 

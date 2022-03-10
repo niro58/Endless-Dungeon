@@ -7,7 +7,7 @@ public class Enemy04Script : MonoBehaviour
     private Animator anim;
     public EnemyGrid roomGrid;
     public Dictionary<Vector2Int, string> roomMapFreeCells;
-    
+    private float speed;
     public Vector2Int direction;
 
     private Rigidbody2D targetRb;
@@ -20,8 +20,9 @@ public class Enemy04Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
         stats = gameObject.GetComponent<EnemyStats>();
+        speed = stats.speed;
+        anim = gameObject.GetComponent<Animator>();
         target = GlobalVar.player.player;
         targetRb = target.GetComponent<Rigidbody2D>();
 
@@ -55,7 +56,7 @@ public class Enemy04Script : MonoBehaviour
                 {
                     direction *= -1;
                 }
-                transform.position = Vector2.MoveTowards(transform.position, roomGrid.CellToWorld(nextCell), stats.speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, roomGrid.CellToWorld(nextCell), speed * Time.deltaTime);
             }
          
         }
@@ -63,7 +64,7 @@ public class Enemy04Script : MonoBehaviour
     }
     void Shoot()
     {
-        if (Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("Obstacle")) == false)
+        if (Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("Obstacle")) == false && stats.health > 0)
         {
             gameObject.GetComponent<Animator>().Play("Enemy_04_Shoot");
             GameObject createdBullet = Instantiate(bullet, transform.position, Quaternion.identity);

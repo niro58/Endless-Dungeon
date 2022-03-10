@@ -1523,5 +1523,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Game.unity
-  playerPath: C:/Users/nichi/OneDrive - VJM Frigotrans s.r.o/Plocha/ur mom/Endless
+  playerPath: C:/Users/nichi/OneDrive - VJM Frigotrans s.r.o/Plocha/Projekt_Final_Build_2/Endless_Dungeon_Build/Endless
     Dungeon.exe

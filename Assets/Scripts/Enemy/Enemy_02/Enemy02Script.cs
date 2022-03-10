@@ -49,25 +49,22 @@ public class Enemy02Script : MonoBehaviour // Enemy that goes in random directio
                     }
                 }
                 cooldownCount = Random.Range(speed - speedRandOffset, speed + speedRandOffset);
-                int layerMask = 1 << 9 | 1 << 6;
+                int layerMask = 1 << 9 | 1 << 6;// Raycast only those layers
                 layerMask = ~layerMask;
                 for (int i = 0; i < availableDirections.Count; i++)
                 {
-                    float moveDistance = Random.Range(minDistance, maxDistance);
-                    Vector2 direction = availableDirections[Random.Range(0, availableDirections.Count)];
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.3f, layerMask);
+                    float moveDistance = Random.Range(minDistance, maxDistance);// Set distance that object will be moved by
+                    Vector2 direction = availableDirections[Random.Range(0, availableDirections.Count)];// Get a random direction
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, moveDistance + 0.3f, layerMask);// Check if direction is available
                     Vector2 pos = transform.position;
                     if (hit == false)
                     {
-                        //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.green, 5f);
-
-                        LeanTween.move(gameObject, pos + (direction * moveDistance), cooldownCount);
+                        LeanTween.move(gameObject, pos + (direction * moveDistance), cooldownCount);// Move by movedistance, if direction is available
                         break;
                     }
                     else
                     {
-                        //Debug.DrawLine(transform.position, transform.position + (new Vector3(direction.x, direction.y, 0) * (moveDistance + 0.15f)), Color.red, 5f);
-                        availableDirections.Remove(direction);
+                        availableDirections.Remove(direction);// Remove direction from available directions if there's an obstactle in the way
                     }
                 }
                 availableDirections.Clear();

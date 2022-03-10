@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats
 {
     public float health = 2;
-    public float speed;
+    public float speed = 1;
     public float damage;
     public float accuracy;
     public float fireRate;
@@ -21,7 +21,10 @@ public class PlayerStats
     private string fileName = "playerStats.dat";
     public PlayerStats()
     {
-        LoadData();
+        if(LoadData() == false)
+        {
+            SaveData();
+        }
     }
     public string ToJson(object obj)
     {
@@ -35,7 +38,7 @@ public class PlayerStats
         }
         if(GlobalFunctions.SaveData(data, fileName))
         {
-            //Debug.Log("Save Succesfull");
+            Debug.Log("Save Succesfull");
         }
     }
     public void AddCoin()
@@ -43,14 +46,19 @@ public class PlayerStats
         if (GlobalFunctions.LoadData(fileName, out string output))
         {
             PlayerStats stats = JsonUtility.FromJson<PlayerStats>(output);
-            stats.coins += 1;
+            stats.coins += GlobalVar.currentLevel + 1;
             SaveData(ToJson(stats));
         }
     }
-    public void LoadData()
+    public bool LoadData()
     {
         if(GlobalFunctions.LoadData(fileName, out string output)){
             JsonUtility.FromJsonOverwrite(output, this);
         }
+        else
+        {
+            return false;
+        }
+        return true;
     }
 }

@@ -28,8 +28,8 @@ public class PlayerGunMovement : MonoBehaviour
             {
                 pos.z = 0.1f;
             }
-            pos.x = (Mathf.Cos(angleRad) * .15f);
-            pos.y = (Mathf.Sin(angleRad) * .075f);
+            pos.x = (Mathf.Cos(angleRad) * .18f);
+            pos.y = (Mathf.Sin(angleRad) * .085f);
             gunParent.localPosition = startPos + pos;
             gunParent.rotation = angleAxis;
 

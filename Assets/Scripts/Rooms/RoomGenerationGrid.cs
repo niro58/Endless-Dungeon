@@ -47,7 +47,7 @@ public class RoomGenerationGrid
         }
         return nodes;
     }
-    public List<Vector2Int> getFilledCells()
+    public List<Vector2Int> GetFilledCells()
     {
         return filledCells;
     }
